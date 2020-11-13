@@ -4,11 +4,11 @@
 
 ## Getting Started with Create React App
 
-This Frontend of the project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Frontend of the project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-Inside the both the frontend and backend directories of the projects , you can run:
+Inside the frontend and backend directories of the projects , you can run:
 
 ### `npm install`
 
