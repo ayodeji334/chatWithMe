@@ -8,7 +8,10 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post()
+        Axios.post("http://localhost:8000/api/user/add-user", {
+            email: username,
+            password
+        }).then(res => console.log(res)).catch(err => console.log(err));
     }
 
     return (

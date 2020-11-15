@@ -3,6 +3,10 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+
+//Enviroment var config
+dotenv.config();
 
 //middleware
 app.use(cors());
@@ -27,7 +31,7 @@ mongoose
   });
 
 //Routes
-const userRouteController = require("./routes/routes");
+const userRouteController = require("./routes/UserRoutes");
 
 //Endpoint
 app.use("/api/user", userRouteController);
