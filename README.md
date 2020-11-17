@@ -1,14 +1,14 @@
-# This is a web application chatApp
+# This is a Chat App
  This project was built with React and Nodejs.
 
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
-This Frontend of the project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Frontend of the project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-Inside the both the frontend and backend directories of the projects , you can run:
+Inside the frontend and backend directories of the projects , you can run:
 
 ### `npm install`
 
