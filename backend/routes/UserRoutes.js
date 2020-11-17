@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 let User = require("../models/user.js");
+const jwt = require("jsonwebtoken");
 const { generateToken } = require("../utilis/generateToken.js");
 const saltRound = 11;
 
@@ -54,31 +55,34 @@ router.post("/add-user", async (req, res) => {
 });
 
 //Login user
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: req.body.email }); // find user with email
+    
     if (user) {
-      // check the passwordconsole.log(user);
-      if (bcrypt.compareSync(req.body.password, user.password)) {
-        return res.status(200).json({
-          _id: user._id,
+      if (bcrypt.compareSync(password, user.password)) {
+        //Generate token
+        const token = jwt.sign({ id: user._id }, "secret" , {
+          expiresIn: "1h", // token expires in 1hour
+        });
+        //send res to client side
+        res.status(200).json({
+          message: "Auth successfully",
           firstname: user.firstname,
           lastname: user.lastname,
-          email: user.email,
-          token: generateToken(user)
-        })
-      } else {
-        res.status(401).json({
-          message: "Invalid Password"
+          token: token,
         });
+      } else {
+        console.log("user not match!");
+        res.send("Invalid Password");
       }
+    } else {
+      res.status(401).send("Invalid Email and Password");
     }
-    // if the above conditions are not false
-    res.status(401).json({
-      message: "There is no user with the record",
-    });
-  } catch (error) {
-    res.status(400).send(error);
+  } catch (err) {
+    next(err);
+    res.status(400).send("Invalid Credential");
   }
 });
 

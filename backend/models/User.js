@@ -28,7 +28,7 @@ const User = new Schema(
         },
     },
     {
-        collection: "User",
+        collection: "Users",
     }
 );
 

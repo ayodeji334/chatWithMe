@@ -3519,6 +3519,90 @@ video {
   background-image: linear-gradient(to top left, var(--gradient-color-stops));
 }
 
+.bg-hero-pattern {
+  background-image: url('/bg_one.jpg');
+}
+
+.hover\:bg-none:hover {
+  background-image: none;
+}
+
+.hover\:bg-gradient-to-t:hover {
+  background-image: linear-gradient(to top, var(--gradient-color-stops));
+}
+
+.hover\:bg-gradient-to-tr:hover {
+  background-image: linear-gradient(to top right, var(--gradient-color-stops));
+}
+
+.hover\:bg-gradient-to-r:hover {
+  background-image: linear-gradient(to right, var(--gradient-color-stops));
+}
+
+.hover\:bg-gradient-to-br:hover {
+  background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+}
+
+.hover\:bg-gradient-to-b:hover {
+  background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+}
+
+.hover\:bg-gradient-to-bl:hover {
+  background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+}
+
+.hover\:bg-gradient-to-l:hover {
+  background-image: linear-gradient(to left, var(--gradient-color-stops));
+}
+
+.hover\:bg-gradient-to-tl:hover {
+  background-image: linear-gradient(to top left, var(--gradient-color-stops));
+}
+
+.hover\:bg-hero-pattern:hover {
+  background-image: url('/bg_one.jpg');
+}
+
+.focus\:bg-none:focus {
+  background-image: none;
+}
+
+.focus\:bg-gradient-to-t:focus {
+  background-image: linear-gradient(to top, var(--gradient-color-stops));
+}
+
+.focus\:bg-gradient-to-tr:focus {
+  background-image: linear-gradient(to top right, var(--gradient-color-stops));
+}
+
+.focus\:bg-gradient-to-r:focus {
+  background-image: linear-gradient(to right, var(--gradient-color-stops));
+}
+
+.focus\:bg-gradient-to-br:focus {
+  background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+}
+
+.focus\:bg-gradient-to-b:focus {
+  background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+}
+
+.focus\:bg-gradient-to-bl:focus {
+  background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+}
+
+.focus\:bg-gradient-to-l:focus {
+  background-image: linear-gradient(to left, var(--gradient-color-stops));
+}
+
+.focus\:bg-gradient-to-tl:focus {
+  background-image: linear-gradient(to top left, var(--gradient-color-stops));
+}
+
+.focus\:bg-hero-pattern:focus {
+  background-image: url('/bg_one.jpg');
+}
+
 .from-transparent {
   --gradient-from-color: transparent;
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
@@ -22137,6 +22221,90 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
+  .sm\:bg-hero-pattern {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .sm\:hover\:bg-none:hover {
+    background-image: none;
+  }
+
+  .sm\:hover\:bg-gradient-to-t:hover {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-gradient-to-tr:hover {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-gradient-to-r:hover {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-gradient-to-br:hover {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-gradient-to-b:hover {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-gradient-to-bl:hover {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-gradient-to-l:hover {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-gradient-to-tl:hover {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .sm\:hover\:bg-hero-pattern:hover {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .sm\:focus\:bg-none:focus {
+    background-image: none;
+  }
+
+  .sm\:focus\:bg-gradient-to-t:focus {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-gradient-to-tr:focus {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-gradient-to-r:focus {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-gradient-to-br:focus {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-gradient-to-b:focus {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-gradient-to-bl:focus {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-gradient-to-l:focus {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-gradient-to-tl:focus {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .sm\:focus\:bg-hero-pattern:focus {
+    background-image: url('/bg_one.jpg');
+  }
+
   .sm\:from-transparent {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
@@ -40723,6 +40891,90 @@ video {
 
   .md\:bg-gradient-to-tl {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .md\:bg-hero-pattern {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .md\:hover\:bg-none:hover {
+    background-image: none;
+  }
+
+  .md\:hover\:bg-gradient-to-t:hover {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-gradient-to-tr:hover {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-gradient-to-r:hover {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-gradient-to-br:hover {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-gradient-to-b:hover {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-gradient-to-bl:hover {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-gradient-to-l:hover {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-gradient-to-tl:hover {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .md\:hover\:bg-hero-pattern:hover {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .md\:focus\:bg-none:focus {
+    background-image: none;
+  }
+
+  .md\:focus\:bg-gradient-to-t:focus {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-gradient-to-tr:focus {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-gradient-to-r:focus {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-gradient-to-br:focus {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-gradient-to-b:focus {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-gradient-to-bl:focus {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-gradient-to-l:focus {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-gradient-to-tl:focus {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .md\:focus\:bg-hero-pattern:focus {
+    background-image: url('/bg_one.jpg');
   }
 
   .md\:from-transparent {
@@ -59313,6 +59565,90 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
+  .lg\:bg-hero-pattern {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .lg\:hover\:bg-none:hover {
+    background-image: none;
+  }
+
+  .lg\:hover\:bg-gradient-to-t:hover {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-gradient-to-tr:hover {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-gradient-to-r:hover {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-gradient-to-br:hover {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-gradient-to-b:hover {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-gradient-to-bl:hover {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-gradient-to-l:hover {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-gradient-to-tl:hover {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .lg\:hover\:bg-hero-pattern:hover {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .lg\:focus\:bg-none:focus {
+    background-image: none;
+  }
+
+  .lg\:focus\:bg-gradient-to-t:focus {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-gradient-to-tr:focus {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-gradient-to-r:focus {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-gradient-to-br:focus {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-gradient-to-b:focus {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-gradient-to-bl:focus {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-gradient-to-l:focus {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-gradient-to-tl:focus {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .lg\:focus\:bg-hero-pattern:focus {
+    background-image: url('/bg_one.jpg');
+  }
+
   .lg\:from-transparent {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
@@ -77899,6 +78235,90 @@ video {
 
   .xl\:bg-gradient-to-tl {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .xl\:bg-hero-pattern {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .xl\:hover\:bg-none:hover {
+    background-image: none;
+  }
+
+  .xl\:hover\:bg-gradient-to-t:hover {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-gradient-to-tr:hover {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-gradient-to-r:hover {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-gradient-to-br:hover {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-gradient-to-b:hover {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-gradient-to-bl:hover {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-gradient-to-l:hover {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-gradient-to-tl:hover {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .xl\:hover\:bg-hero-pattern:hover {
+    background-image: url('/bg_one.jpg');
+  }
+
+  .xl\:focus\:bg-none:focus {
+    background-image: none;
+  }
+
+  .xl\:focus\:bg-gradient-to-t:focus {
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-gradient-to-tr:focus {
+    background-image: linear-gradient(to top right, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-gradient-to-r:focus {
+    background-image: linear-gradient(to right, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-gradient-to-br:focus {
+    background-image: linear-gradient(to bottom right, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-gradient-to-b:focus {
+    background-image: linear-gradient(to bottom, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-gradient-to-bl:focus {
+    background-image: linear-gradient(to bottom left, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-gradient-to-l:focus {
+    background-image: linear-gradient(to left, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-gradient-to-tl:focus {
+    background-image: linear-gradient(to top left, var(--gradient-color-stops));
+  }
+
+  .xl\:focus\:bg-hero-pattern:focus {
+    background-image: url('/bg_one.jpg');
   }
 
   .xl\:from-transparent {
