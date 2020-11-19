@@ -3519,10 +3519,6 @@ video {
   background-image: linear-gradient(to top left, var(--gradient-color-stops));
 }
 
-.bg-hero-pattern {
-  background-image: url('/bg_one.jpg');
-}
-
 .hover\:bg-none:hover {
   background-image: none;
 }
@@ -3559,10 +3555,6 @@ video {
   background-image: linear-gradient(to top left, var(--gradient-color-stops));
 }
 
-.hover\:bg-hero-pattern:hover {
-  background-image: url('/bg_one.jpg');
-}
-
 .focus\:bg-none:focus {
   background-image: none;
 }
@@ -3597,10 +3589,6 @@ video {
 
 .focus\:bg-gradient-to-tl:focus {
   background-image: linear-gradient(to top left, var(--gradient-color-stops));
-}
-
-.focus\:bg-hero-pattern:focus {
-  background-image: url('/bg_one.jpg');
 }
 
 .from-transparent {
@@ -22221,10 +22209,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .sm\:bg-hero-pattern {
-    background-image: url('/bg_one.jpg');
-  }
-
   .sm\:hover\:bg-none:hover {
     background-image: none;
   }
@@ -22261,10 +22245,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .sm\:hover\:bg-hero-pattern:hover {
-    background-image: url('/bg_one.jpg');
-  }
-
   .sm\:focus\:bg-none:focus {
     background-image: none;
   }
@@ -22299,10 +22279,6 @@ video {
 
   .sm\:focus\:bg-gradient-to-tl:focus {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
-  }
-
-  .sm\:focus\:bg-hero-pattern:focus {
-    background-image: url('/bg_one.jpg');
   }
 
   .sm\:from-transparent {
@@ -40893,10 +40869,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .md\:bg-hero-pattern {
-    background-image: url('/bg_one.jpg');
-  }
-
   .md\:hover\:bg-none:hover {
     background-image: none;
   }
@@ -40933,10 +40905,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .md\:hover\:bg-hero-pattern:hover {
-    background-image: url('/bg_one.jpg');
-  }
-
   .md\:focus\:bg-none:focus {
     background-image: none;
   }
@@ -40971,10 +40939,6 @@ video {
 
   .md\:focus\:bg-gradient-to-tl:focus {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
-  }
-
-  .md\:focus\:bg-hero-pattern:focus {
-    background-image: url('/bg_one.jpg');
   }
 
   .md\:from-transparent {
@@ -59565,10 +59529,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .lg\:bg-hero-pattern {
-    background-image: url('/bg_one.jpg');
-  }
-
   .lg\:hover\:bg-none:hover {
     background-image: none;
   }
@@ -59605,10 +59565,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .lg\:hover\:bg-hero-pattern:hover {
-    background-image: url('/bg_one.jpg');
-  }
-
   .lg\:focus\:bg-none:focus {
     background-image: none;
   }
@@ -59643,10 +59599,6 @@ video {
 
   .lg\:focus\:bg-gradient-to-tl:focus {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
-  }
-
-  .lg\:focus\:bg-hero-pattern:focus {
-    background-image: url('/bg_one.jpg');
   }
 
   .lg\:from-transparent {
@@ -78237,10 +78189,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .xl\:bg-hero-pattern {
-    background-image: url('/bg_one.jpg');
-  }
-
   .xl\:hover\:bg-none:hover {
     background-image: none;
   }
@@ -78277,10 +78225,6 @@ video {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
   }
 
-  .xl\:hover\:bg-hero-pattern:hover {
-    background-image: url('/bg_one.jpg');
-  }
-
   .xl\:focus\:bg-none:focus {
     background-image: none;
   }
@@ -78315,10 +78259,6 @@ video {
 
   .xl\:focus\:bg-gradient-to-tl:focus {
     background-image: linear-gradient(to top left, var(--gradient-color-stops));
-  }
-
-  .xl\:focus\:bg-hero-pattern:focus {
-    background-image: url('/bg_one.jpg');
   }
 
   .xl\:from-transparent {

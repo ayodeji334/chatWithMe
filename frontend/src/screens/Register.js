@@ -12,8 +12,10 @@ function Register() {
     const [email, setEmail] = useState('');
     const [cfmToggle, setCfmToggle] = useState(false);
     const [passwToggle, setPasswToggle] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(true);
     const passwordInput = useRef();
     const cfmPasswordInput = useRef();
+    const acceptCheckbox = useRef();
 
     const togglePassword = () => {
         setPasswToggle(!passwToggle);
@@ -33,6 +35,14 @@ function Register() {
         }
     }
 
+    const toggleCheckBox = () => {
+        if (acceptCheckbox.current.checked) {
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         Axios.post("http://localhost:8000/api/user/add-user", {
@@ -43,7 +53,7 @@ function Register() {
 
     return (
          <div className="flex h-full">
-            <div className="w-1/2 bg-login bg-red-500 text-white h-full">
+            <div className="hidden lg:block lg:w-1/2 bg-login bg-red-500 text-white h-full">
                 <div className="bg-blue-900 bg-opacity-50 h-full flex  flex-column justify-center items-center">
                     <div className="w-4/5">
                         <img className="m-auto my-3" src={logo} alt="logo" height="100" width="100" />
@@ -66,54 +76,58 @@ function Register() {
                     </div>
                 </div>
             </div>
-            <div className="w-1/2 h-full">
-                <div className="w-full h-full bg-white m-auto flex justify-center items-center">
-                    <form className="bg-white rounded px-8 pt-6 mt-1 w-4/5" onSubmit={handleSubmit}>
+            <div className="w-full md:3/4 md:mx-auto lg:w-1/2 h-full">
+                <div className="w-full h-full bg-white m-auto flex justify-center md:items-center">
+                    <form className="bg-white rounded px-5 pt-6 mt-1 w-full md:w-3/4 lg:w-4/5" onSubmit={handleSubmit}>
                         <div className="text-black mt-2 mb-6 text-center">
                             <h1 className="text-3xl font-bold">Let's get started</h1>
                             <p className="text-sm">Create an account to connect with your friends</p>
                         </div>
-                        <div className="mb-4">
-                            <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
-                            Firstname
-                            </label>
-                            <input
-                                className="
-                                shadow appearance-none
-                                border rounded w-full
-                                py-4 px-3 text-gray-700
-                                leading-tight 
-                                focus:outline-none
-                                focus:shadow-outline"
-                                type="text"
-                                placeholder="Enter Firstname"
-                                value={firstname}
-                                onChange={(e) => {
-                                    e.preventDefault();
-                                    setFirstname(e.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
-                            Lastname
-                            </label>
-                            <input
-                                className="
-                                shadow appearance-none
-                                border rounded w-full
-                                py-4 px-3 text-gray-700
-                                leading-tight 
-                                focus:outline-none
-                                focus:shadow-outline"
-                                type="text"
-                                placeholder="Enter Lastname"
-                                value={lastname}
-                                onChange={(e) => {
-                                    e.preventDefault();
-                                    setLastname(e.target.value);
-                                }}
-                            />
+                        <div className="flex mb-2 flex-col xl:flex-row">
+                            <div className="mb-4 mr-3 w-full xl:w-1/2">
+                                <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
+                                Firstname
+                                </label>
+                                <input
+                                    className="
+                                    shadow appearance-none
+                                    border rounded w-full
+                                    py-4 px-3 text-gray-700
+                                    leading-tight 
+                                    focus:outline-none
+                                    focus:shadow-outline"
+                                    type="text"
+                                    placeholder="Enter Firstname"
+                                    value={firstname}
+                                    onChange={(e) => {
+                                        e.preventDefault();
+                                        setFirstname(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
+                            <div className="w-full xl:w-1/2">
+                                <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
+                                Lastname
+                                </label>
+                                <input
+                                    className="
+                                    shadow appearance-none
+                                    border rounded w-full
+                                    py-4 px-3 text-gray-700
+                                    leading-tight 
+                                    focus:outline-none
+                                    focus:shadow-outline"
+                                    type="text"
+                                    placeholder="Enter Lastname"
+                                    value={lastname}
+                                    onChange={(e) => {
+                                        e.preventDefault();
+                                        setLastname(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
                         </div>
                         <div className="mb-4">
                             <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
@@ -134,6 +148,7 @@ function Register() {
                                     e.preventDefault();
                                     setEmail(e.target.value);
                                 }}
+                                required
                             />
                         </div>
                         <div className="mb-4">
@@ -186,9 +201,15 @@ function Register() {
                             </span>
                             {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
                         </div>
+                        <div className="mb-4">
+                            <input ref={acceptCheckbox} type="checkbox" onChange={toggleCheckBox } /> &nbsp;
+                            <label htmlFor="checkbox">
+                                Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our default Notification Settings.
+                            </label>
+                        </div>
                         <div className="text-center">
-                            <button className="w-40 rounded-full bg-blue-700 hover:bg-blue-900 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline rounded-full" type="submit">
-                            Create Account
+                            <button disabled={isDisabled} className={`${isDisabled ? "opacity-50 cursor-not-allowed" : null} w-40 rounded-full shadow-lg bg-gradient-to-r from-teal-400 to-blue-500 hover:from-red-400 hover:to-pink-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline rounded-full`} type="submit">
+                                Create Account
                             </button>
                         </div>
                         <div className="my-5 text-center">

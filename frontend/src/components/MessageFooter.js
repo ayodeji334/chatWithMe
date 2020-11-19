@@ -1,4 +1,4 @@
-import { IconButton, Stack } from '@chakra-ui/core'
+import { IconButton, Stack } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { BiSend, BiSmile } from 'react-icons/bi';
 

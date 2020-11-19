@@ -1,7 +1,7 @@
-import React, {useContext, useState} from 'react';
+import React, { useState} from 'react';
 import { BiMinusCircle, BiTrashAlt, BiUserMinus } from 'react-icons/bi';
 import { FaUsers } from 'react-icons/fa';
-import { Avatar, Link} from '@chakra-ui/core';
+import { Avatar, Link} from '@chakra-ui/react';
 
 function UserDetail() {
     const [follow, setFollow] = useState(false);
@@ -11,21 +11,19 @@ function UserDetail() {
     }
 
     return (
-        <div className="user_detail_container">
-            <div className="user_detail_header">
-                <Avatar size="lg" name={`user name`} src="..." />
-                <h5 className="pt-2 pb-2 m-0"><strong>{`user name`}</strong></h5>
+        <div className="py-5 px-3 w-1/4 bg-white border-l-2 border-fuchsia-600">
+            <div className="flex justify-center items-center flex-col py-3">
+                <Avatar size="lg" name={`Odunayo`} src="..." />
+                <h5 className="pt-2 pb-2 m-0"><strong>{`Odunayo`}</strong></h5>
                 <button
-                    className={`btn ${follow ? "btn-primary" : "btn-outline-primary"}`}
-                    style={{ borderWidth: 2 }}
                     onClick={toggleButton}
-                >
+                    className={`${follow ? "bg-pink-500 hover:from-red-400 hover:to-pink-700 text-white" : "border-1 border-blue-500" } rounded-full font-bold py-3 px-4 rounded focus:outline-none`} type="submit">
                     {follow ? "Following" : "Follow"}
                 </button>
             </div>
             <div className="user_detail_body">
                 <div className="chat_media_shared">
-                    <div className="header">
+                    <div className="flex justify-between">
                         <span className="text-muted text-small"><b>Contact Information</b></span>
                         <Link href="#">
                             See All

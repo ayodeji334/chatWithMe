@@ -29,8 +29,8 @@ function Login() {
     }
 
     return (
-         <div className="flex h-full w-full">
-            <div className="w-1/2 md:w-full sm:w-full bg-login bg-red-500 text-white h-full">
+        <div className="flex h-full w-full">
+            <div className="hidden lg:block lg:w-1/2 bg-login bg-red-500 text-white h-full">
                 <div className="bg-blue-900 bg-opacity-75 h-full flex  flex-column justify-center items-center">
                     <div className="w-4/5">
                         <img className="m-auto my-3" src={logo} alt="logo" height="100" width="100" />
@@ -53,7 +53,7 @@ function Login() {
                     </div>
                 </div>
             </div>
-            <div className="w-1/2 h-full">
+            <div className="w-full md:3/5 lg:w-1/2 mx-auto h-full">
                 <div className="w-full bg-white h-full m-auto flex justify-center items-center">
                     <form className="bg-white rounded px-8 pt-6 mt-1 w-4/5" onSubmit={handleSubmit}>
                         <div className="text-black mt-8 mb-6 text-center">
@@ -112,7 +112,7 @@ function Login() {
                             </Link>
                         </div>
                         <div className="text-center">
-                            <button className="w-40 shadow-lg rounded-full bg-blue-700 hover:bg-blue-900 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            <button className="w-40 shadow-lg rounded-full bg-gradient-to-r from-teal-400 to-blue-500 hover:from-red-400 hover:to-pink-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                             Login
                             </button>
                         </div>

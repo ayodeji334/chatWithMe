@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import Chat from './screens/Chat';
 import Login from './screens/Login';
 import Register from './screens/Register';
 
@@ -13,13 +14,5 @@ function App() {
       </Switch>
     </div>
   );
-}
-
-function Chat() {
-  return (
-    <>
-      <h1>chat page</h1>
-    </>
-  )
 }
 export default App;

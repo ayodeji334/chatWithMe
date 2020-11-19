@@ -8,7 +8,7 @@ function Message({message}) {
         return date.toString();
     };
     return (
-        <div key={index} className={`chat-message 
+        <div className={`chat-message 
             ${message.receiver_id === uid ? "chat_message_receive" : "chat_message_send"}`}>
                 <p className="m-0 p-1">
                     {message.message} 

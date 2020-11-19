@@ -1,20 +1,50 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import { Stack, Modal, ModalOverlay,ModalContent,ModalBody, IconButton, ModalHeader, useDisclosure } from '@chakra-ui/react';
+import { MdClose } from 'react-icons/md';
+import SearchForm from '../components/SearchForm';
+import { BiMessageSquareAdd } from 'react-icons/bi';
+import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 
 function Chatlist() {
+    const [searchquery, setSearchQuery] = useState("");
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const addChatBtnRef = useRef();
+
+    const handleSearchUser = (e) => {
+        e.preventDefault();
+        console.log(searchquery);
+    }
+
+    const handleSearchChat = (e) => {
+        e.preventDefault();
+        console.log(searchquery);
+    }
+
     return (
-        <div className="h-full w-full">
-            <div className="flex items-center justify-between">
-                chat-header here.....
+        <div className="h-full w-1/4 border-r-2 border-fuchsia-600 bg-white">
+            <div className="flex items-center justify-between py-3 px-2 border-b-2 border-fuchsia-600">
+                <h5 className="m-0 font-bold text-black text-xl"><strong>Chats</strong></h5>
+                <div>
+                    <Stack isInline>
+                        <IconButton fontSize="18px" icon={AiOutlineUsergroupAdd} size="md" aria-label="create-group" />
+                        <IconButton fontSize="18px" ref={addChatBtnRef} onClick={onOpen} icon={BiMessageSquareAdd} size="md" aria-label="add_chat" />
+                    </Stack>
+                </div>
             </div>
-            <div className="">
-                 <form>
-                    <input type="text" className="form-control search-box" placeholder="Search friends..."/>
+            <div className="py-3 px-2">
+                 <form onSubmit={handleSearchChat}>
+                    <input
+                        type="text"
+                        className="rounded-full bg-pink-200 p-2 w-full focus:outline-none"
+                        placeholder="Search friends..."
+                        onChange={(e) => {
+                            setSearchQuery(e.target.value)
+                        }}
+                    />
                 </form>
             </div>
-            <div className="chat-list">
-                <div className="list-group">
-                    chatlist-items here....
-                </div>
+            <div className="chat-list py-3 px-2">
+                <h1>Chatlist</h1>
             </div>
              <Modal 
                 onClose={onClose} 
@@ -32,7 +62,19 @@ function Chatlist() {
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                        <SearchPeopleForm isNewChatAdded={closeModal}/>
+                        <SearchForm>
+                            <form onSubmit={handleSearchUser}>
+                                <input
+                                    className="search_box"
+                                    type="search"
+                                    placeholder="Search people here..."
+                                    required
+                                    onChange={(e) => {
+                                        setSearchQuery(e.target.value);
+                                    }}
+                                />
+                            </form>
+                        </SearchForm>
                     </ModalBody>
                 </ModalContent>
             </Modal>

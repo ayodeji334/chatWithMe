@@ -5,7 +5,7 @@ import {
     Menu,
     MenuButton,
     MenuList,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import {
     BiArrowFromRight,
     BiDotsVerticalRounded,
@@ -20,7 +20,7 @@ function MessageHeader() {
             <div className="chat_user_detail">
                 <Avatar size="sm" name={"Fawumi Odunayo"} src="..." />
                 <div className="pl-1">
-                    <h6 className="m-0 text-red"><strong>{chatDetails.name}</strong></h6>
+                    <h6 className="m-0 text-red"><strong>{"Fawumi Odunayo"}</strong></h6>
                     {false ? <Badge variant="outline" variantColor="green">Online</Badge> : <p className="text-muted m-0 user_online_status">last seen 13 hour ago</p> }
                 </div>
             </div>
