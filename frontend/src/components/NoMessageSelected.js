@@ -2,8 +2,8 @@ import React from 'react'
 
 function NoMessageSelected() {
     return (
-        <div>
-            <h6><strong>Please select a chat</strong></h6>
+        <div className="h-full w-full flex flex-col justify-center items-center">
+            <h1 className="text-xl font-bolder"><strong>Please select a chat</strong></h1>
             <p className="text-muted">Select a chat from the left side to get started</p>
         </div>
     )

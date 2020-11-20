@@ -17,13 +17,13 @@ function UserDetail() {
                 <h5 className="pt-2 pb-2 m-0"><strong>{`Odunayo`}</strong></h5>
                 <button
                     onClick={toggleButton}
-                    className={`${follow ? "bg-pink-500 hover:from-red-400 hover:to-pink-700 text-white" : "border-1 border-blue-500" } rounded-full font-bold py-3 px-4 rounded focus:outline-none`} type="submit">
+                    className={`${follow ? "bg-red-500 hover:from-red-400 hover:to-purple-700 text-white" : "w-36 border-2 border-red-600 text-red" } rounded-full font-bold py-3 px-4 rounded focus:outline-none`} type="submit">
                     {follow ? "Following" : "Follow"}
                 </button>
             </div>
             <div className="user_detail_body">
                 <div className="chat_media_shared">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between border-b-2 border-fuchsia-600 border-t-2 border-fuchsia-600 p-2">
                         <span className="text-muted text-small"><b>Contact Information</b></span>
                         <Link href="#">
                             See All
@@ -31,19 +31,29 @@ function UserDetail() {
                     </div>
                     <div>
                         <ul className="p-0">
-                            <li><b>Gender:</b> Male</li>
-                            <li><b>Phone:</b> +2347023232323</li>
-                            <li><b>Email:</b> fawumiayodeji@gmail.com</li>
+                            <li className="p-2"><b>Gender:</b> Male</li>
+                            <li className="p-2"><b>Phone:</b> +2347023232323</li>
+                            <li className="p-2"><b>Email:</b> fawumiayodeji@gmail.com</li>
                         </ul>
                     </div>
                 </div>
                 <div className="utilis">
-                    <div className="list-group">
-                        <button type="button" className="list-group-item list-group-item-action"><FaUsers /> Groups in Common</button>
-                        <button type="button" className="list-group-item list-group-item-action"><BiUserMinus /> Shared Files</button>
-                        <button type="button" className="list-group-item list-group-item-action"><BiTrashAlt /> Delete Chat</button>
-                        <button type="button" className="list-group-item list-group-item-action"><BiUserMinus /> Report User</button>
-                        <button type="button" className="list-group-item list-group-item-action "><BiMinusCircle /> Block User</button>
+                    <div className="flex flex-col">
+                        <button type="button" className="focus:outline-none w-full mt-1 border flex items-center p-2 font-normal rounded">
+                            <FaUsers /> &nbsp; Groups in Common
+                        </button>
+                        <button type="button" className="focus:outline-none w-full mt-1 border flex items-center p-2 font-normal rounded">
+                            <BiUserMinus /> &nbsp; Shared Files
+                        </button>
+                        <button type="button" className="focus:outline-none w-full mt-1 border flex items-center p-2 font-normal rounded text-red-500">
+                            <BiTrashAlt /> &nbsp; Delete Chat
+                        </button>
+                        <button type="button" className="focus:outline-none w-full mt-1 border flex items-center p-2 font-normal rounded text-red-500">
+                            <BiUserMinus /> &nbsp; Report User
+                        </button>
+                        <button type="button" className="focus:outline-none w-full mt-1 border flex items-center p-2 font-normal rounded text-red-500">
+                            <BiMinusCircle /> &nbsp; Block User
+                        </button>
                     </div>
                 </div>
             </div>
