@@ -1,4 +1,3 @@
-import React from 'react';
 import { Avatar, AvatarBadge, Badge, Stack } from "@chakra-ui/react";
 import { NavLink, useRouteMatch } from 'react-router-dom';
 

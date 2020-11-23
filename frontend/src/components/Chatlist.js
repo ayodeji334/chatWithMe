@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Stack, Modal, ModalOverlay,ModalContent,ModalBody, IconButton, ModalHeader, useDisclosure } from '@chakra-ui/react';
 import { MdClose } from 'react-icons/md';
 import SearchForm from '../components/SearchForm';

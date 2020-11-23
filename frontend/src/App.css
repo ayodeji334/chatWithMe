@@ -50,7 +50,7 @@ section.chakra-modal__content{
 .chat-list-container::-webkit-scrollbar-thumb {
   background: #18001b;
 }
-.message_container_body{
+.message-body{
   padding: 0px 10px;
   flex: 1;
   overflow-y: auto;
@@ -77,7 +77,7 @@ section.chakra-modal__content{
   position: absolute;
 }
 .message-body{
-  height: calc(100% - 140px) !important;
+  height: calc(100% - 126px) !important;
 }
 .message-input{
   font-size: .83rem !important;

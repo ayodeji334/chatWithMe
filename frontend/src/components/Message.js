@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Message({message}) {
     const uid = "4839TkG79DsExbIi3rxA";
     // function convertTime(time){
