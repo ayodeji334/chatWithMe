@@ -202,7 +202,7 @@ function Register() {
                             {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
                         </div>
                         <div className="mb-4">
-                            <input ref={acceptCheckbox} type="checkbox" onChange={toggleCheckBox } /> &nbsp;
+                            <input className="appearance-none checked:bg-blue-600 checked:border-transparent" ref={acceptCheckbox} type="checkbox" onChange={toggleCheckBox } /> &nbsp;
                             <label htmlFor="checkbox">
                                 Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our default Notification Settings.
                             </label>

@@ -11,6 +11,10 @@ html, body, #root{
   z-index: 2;
   cursor: pointer;
 }
+.active_link{
+  background-color: whitesmoke;
+  color: purple;
+}
 .bg-login{
   background-image: url("./assets/bg_one.jpg");
   background-size: cover;
@@ -21,4 +25,101 @@ html, body, #root{
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.chakra-button:focus{
+  outline: none !important;
+  border: none !important;
+}
+.chat-list-container{
+  overflow-y: auto;
+  flex: 1;
+  max-height: 540px;
+}
+.chat-list-container::-webkit-scrollbar {
+  width: 7px;
+}
+.chakra-modal__header,.chakra-modal__body{
+  padding: 0px !important;
+}
+section.chakra-modal__content{
+  max-width: 32rem !important;
+}
+.chat-list-container::-webkit-scrollbar-track {
+  background: #ddd;
+}
+.chat-list-container::-webkit-scrollbar-thumb {
+  background: #18001b;
+}
+.message_container_body{
+  padding: 0px 10px;
+  flex: 1;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  max-height: 625px;
+}
+.chakra-menu__menu-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  width: 38px;
+  padding: 0;
+}
+.chakra-menu__menu-button:focus{
+ outline: none;
+}
+.chakra-menu__menu-list{
+  margin-top: -7px;
+  padding: 0 !important;
+  top: 10px !important;
+  left: -185px !important;
+  position: absolute;
+}
+.message-body{
+  height: calc(100% - 140px) !important;
+}
+.message-input{
+  font-size: .83rem !important;
+  width: calc(100% - 60px) !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  color: #495057 !important;
+  margin: 0px 5px !important;
+  border: none !important;
+  display: inline !important;
+  background-color: #ececec !important;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.chat_message {
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+.chat_message_receive{
+  border-top-left-radius: 0px !important;
+  font-size: .94em;
+  margin-top: 10px;
+  margin-right: auto;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: calc(100% - 100px);
+}
+.chat_message_send{
+  font-size: .94em;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-bottom: 10px;
+  padding: 7px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: calc(100% - 100px);
+  border-bottom-right-radius: 0px !important;
+}
+.active_chat{
+  border-right-color: #d401d4;
+  border-right-width: 5px;
 }

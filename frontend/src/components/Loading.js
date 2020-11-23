@@ -1,4 +1,4 @@
-import { Spinner } from '@chakra-ui/core'
+import { Spinner } from '@chakra-ui/react'
 import React from 'react'
 
 function Loading() {

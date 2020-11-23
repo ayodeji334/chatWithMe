@@ -5,7 +5,7 @@ import MessageFooter from './MessageFooter';
 
 function MessageContainer() {
     return (
-        <div>
+        <div className="h-full">
             <MessageHeader />
             <MessageBody  />
             <MessageFooter  />  

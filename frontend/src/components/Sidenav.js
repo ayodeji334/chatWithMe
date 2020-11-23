@@ -4,37 +4,31 @@ import { GrStatusGood } from "react-icons/gr";
 import { FiSettings } from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
 import { Tooltip } from "@chakra-ui/react";
+import logo from '../logo.svg';
 
 function Sidenav() {
     return (
-        <div className="sidenav-container hidden md:block md:w-28 p-2 bg-gray-200">
-            <ul className="p-0 m-0 h-full flex flex-col items-center pt-3">
-                <li className="bg-white rounded shadow p-4 mb-2 flex items-center justify-center">
-                    <Tooltip label="Home" placement="right">
-                        <NavLink activeClassName="active_link" exact to="/chat"><BiHomeCircle size="27px" /></NavLink>
-                    </Tooltip>
-                </li>
-                <li className="bg-white rounded shadow p-4 mb-2 flex items-center justify-center">
-                    <Tooltip label="Status">
-                        <NavLink activeClassName="active_link" exact to="#"><GrStatusGood size="27px" /></NavLink>
-                    </Tooltip>
-                </li>
-                <li className="bg-white rounded shadow p-4 mb-2 flex items-center justify-center">
-                    <Tooltip label="Notification">
-                        <NavLink activeClassName="active_link" exact to="#"><BiBell size="27px" /></NavLink>
-                    </Tooltip>
-                </li>
-                <li className="bg-white rounded shadow p-4 mb-2 flex items-center justify-center">
-                    <Tooltip label="Profile">
-                        <NavLink activeClassName="active_link" exact to="#"><BiUser size="27px"/></NavLink>
-                    </Tooltip>        
-                </li>
-                <li className="bg-white rounded shadow p-4 mb-2 flex items-center justify-center">
-                    <Tooltip label="Settings">
-                        <NavLink activeClassName="active_link" exact to="#"><FiSettings size="27px"/></NavLink>
-                    </Tooltip>
-                </li>
-            </ul>
+        <div className="rounded sidenav-container hidden md:block md:w-28 bg-purple-800">
+            <div className="p-2 mb-4">
+                <img src={logo} height="60" width="60" alt="logo" />
+            </div>
+            <div className="flex flex-col w-full h-full">
+                <Tooltip label="Home" placement="right">
+                    <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/chat"><BiHomeCircle size="27px" /></NavLink>
+                </Tooltip>
+                <Tooltip label="Status">
+                    <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/status"><GrStatusGood size="27px" /></NavLink>
+                </Tooltip>
+                <Tooltip label="Notification">
+                    <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/notifications"><BiBell size="27px" /></NavLink>
+                </Tooltip>
+                <Tooltip label="Profile">
+                    <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/profile"><BiUser size="27px"/></NavLink>
+                </Tooltip> 
+                <Tooltip label="Settings">
+                    <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/settings"><FiSettings size="27px"/></NavLink>
+                </Tooltip>
+            </div>
         </div>
     )
 }

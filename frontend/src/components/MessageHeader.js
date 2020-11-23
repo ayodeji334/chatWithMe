@@ -1,7 +1,6 @@
 import React from 'react'
 import {
     Avatar,
-    Badge,
     Menu,
     MenuButton,
     MenuList,
@@ -16,12 +15,12 @@ import {
 
 function MessageHeader() {
     return (
-        <div className="message-container-header">
-            <div className="chat_user_detail">
-                <Avatar size="sm" name={"Fawumi Odunayo"} src="..." />
-                <div className="pl-1">
-                    <h6 className="m-0 text-red"><strong>{"Fawumi Odunayo"}</strong></h6>
-                    {false ? <Badge variant="outline" variantColor="green">Online</Badge> : <p className="text-muted m-0 user_online_status">last seen 13 hour ago</p> }
+        <div className="message-container-header flex flex-row justify-between items-center p-2 border-b border-gray-400">
+            <div className="chat_user_detail flex items-center">
+                <Avatar size="md" name={"Fawumi Odunayo"} src="..." />
+                <div className="pl-2">
+                    <h6 className="font-bold text-lg"><strong>{"Fawumi Odunayo"}</strong></h6>
+                    {true ? <p className="text-sm">Online</p> : <p className="text-sm">Last seen 13 hour ago</p> }
                 </div>
             </div>
             <div className="chat-buttons-group">
@@ -31,7 +30,7 @@ function MessageHeader() {
                         py={2}
                         fontSize="18px"
                         transition="all 0.2s"
-                        rounded="100%"
+                        rounded="full"
                         borderWidth="0px"
                         backgroundColor="#e7e7e7"
                         _hover={{ bg: "purple.700", color: "white" }}
@@ -39,11 +38,11 @@ function MessageHeader() {
                         <BiDotsVerticalRounded />
                     </MenuButton>
                     <MenuList>
-                        <div className="list-group">
-                            <button className="list-group-item list-group-item-action"><BiArrowFromRight /> Clear Chat</button>
-                            <button className="list-group-item list-group-item-action"><BiTrash /> Delete Chat</button>
-                            <button className="list-group-item list-group-item-action"><BiUserMinus /> Unfollow User</button>
-                            <button className="list-group-item list-group-item-action "><BiMinusCircle /> Block User</button>
+                        <div className="bg-none">
+                            <button className="m-0 w-full p-3 text-red-500 flex items-center focus:outline-none hover:bg-gray-100 border-b border-gray-400"><BiArrowFromRight /> &nbsp; Clear Chat</button>
+                            <button className="m-0 w-full p-3 text-red-500 flex items-center focus:outline-none hover:bg-gray-100 border-b border-gray-400"><BiTrash />  &nbsp; Delete Chat</button>
+                            <button className="m-0 w-full p-3 text-red-500 flex items-center focus:outline-none hover:bg-gray-100 border-b border-gray-400"><BiUserMinus />  &nbsp; Unfollow User</button>
+                            <button className="m-0 w-full p-3 text-red-500 flex items-center focus:outline-none hover:bg-gray-100"><BiMinusCircle />  &nbsp; Block User</button>
                         </div>
                     </MenuList>
                 </Menu>
