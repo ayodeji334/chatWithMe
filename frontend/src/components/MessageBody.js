@@ -22,7 +22,7 @@ function MessageBody() {
             id: 3,
             receiver_id: "4839TkG79DsExbIi3rxA",
             sender_id: "jh23jsadj2sdsjds2",
-            message: "message",
+            message: "message received",
             created_at: new Date(2020, 9, 17, 2, 39, 40),
         },
         {

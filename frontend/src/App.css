@@ -1,7 +1,11 @@
 html, body, #root{
   height: 100% !important;
+   font-family: -apple-system, BlinkMacSystemFont, 'Nunito', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
 .toggle-password-icon {
   float: right;
   margin-right: 5px;
@@ -21,7 +25,6 @@ html, body, #root{
   background-repeat: no-repeat;
   background-position: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -79,6 +82,10 @@ section.chakra-modal__content{
 .message-body{
   height: calc(100% - 126px) !important;
 }
+.message-body p{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
 .message-input{
   font-size: .83rem !important;
   width: calc(100% - 60px) !important;
@@ -103,8 +110,8 @@ section.chakra-modal__content{
   margin-top: 10px;
   margin-right: auto;
   margin-bottom: 10px;
-  padding: 8px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 15px;
   width: fit-content;
   max-width: calc(100% - 100px);
 }
@@ -113,8 +120,8 @@ section.chakra-modal__content{
   margin-top: 10px;
   margin-left: auto;
   margin-bottom: 10px;
-  padding: 7px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 15px;
   width: fit-content;
   max-width: calc(100% - 100px);
   border-bottom-right-radius: 0px !important;
@@ -122,4 +129,24 @@ section.chakra-modal__content{
 .active_chat{
   border-right-color: #d401d4;
   border-right-width: 5px;
+}
+.side-details{
+  padding: 0px 10px;
+  flex: 1 1;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  max-height: 678px;
+  padding-bottom: 10px;
+}
+.side-details::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 20px;
+}
+.side-details::-webkit-scrollbar-track {
+  background: #ddd;
+}
+.side-details::-webkit-scrollbar-thumb {
+  background: #c50505;
+  border-radius: 20px;
 }
