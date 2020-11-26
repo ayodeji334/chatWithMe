@@ -1,22 +1,21 @@
 import React, { useRef, useState } from 'react'
-import Axios from 'axios';
+// import Axios from 'axios';
 import { Link, useRouteMatch } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { connect } from 'react-redux';
+import { signIn } from '../utils/Actions/authActions';
 
-function Login() {
+function Login(props) {
     let { url } = useRouteMatch();
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [toggle, setToggle] = useState(false);
     const passwordInput = useRef();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:8000/api/user/add-user", {
-            email: username,
-            password
-        }).then(res => console.log(res)).catch(err => console.log(err));
+        props.signUserIn({ email, password });
     }
 
     const togglePassword = () => {
@@ -61,8 +60,8 @@ function Login() {
                             <p className="text-sm">Login in to your existing account</p>
                         </div>
                         <div className="mb-4">
-                            <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
-                                Email or Username
+                            <label className="block text-black text-sm font-bold mb-2" htmlFor="email">
+                                Email
                             </label>
                             <input
                                 className="
@@ -73,11 +72,11 @@ function Login() {
                                 focus:outline-none
                                 focus:shadow-outline"
                                 type="text"
-                                placeholder="Enter Email or Username"
-                                value={username}
+                                placeholder="Enter Email"
+                                value={email}
                                 onChange={(e) => {
                                     e.preventDefault();
-                                    setUsername(e.target.value);
+                                    setEmail(e.target.value);
                                 }}
                             />
                         </div>
@@ -131,4 +130,15 @@ function Login() {
     )
 }
 
-export default Login
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authErr
+    } 
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUserIn: (credentials) => dispatch(signIn(credentials))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import PrivateRoute from './components/Privateroute';
 import Chat from './screens/Chat';
 import Login from './screens/Login';
 import Register from './screens/Register';
@@ -10,7 +11,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/chat" component={Chat} />
+        <PrivateRoute path="/chat" auth={false} component={Chat} />
       </Switch>
     </div>
   );

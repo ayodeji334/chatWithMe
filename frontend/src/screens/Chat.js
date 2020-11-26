@@ -10,11 +10,10 @@ import Navbar from '../components/Navbar';
 function Chat() {
     const { path } = useRouteMatch();
     return (
-        <>
-            
+        <>  
             <div className="chat-container h-full w-full flex bg-gray-200 md:overflow-hidden">
                 <Sidenav />
-                <div className="w-full">
+                <div className="w-full h-full">
                     <div className="w-full">
                         <Navbar />  
                     </div>

@@ -5,12 +5,35 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react";
+import { Provider, } from 'react-redux';
+import store from './utils/store';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import firebase from './utils/firebase';
+import { createFirestoreInstance } from 'redux-firestore';
+
+// react-redux-firebase config to store users in users collection
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true
+}
+
+// react-redux-firebase props
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance 
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider>
-        <App />
+        <Provider store={store}>
+          <ReactReduxFirebaseProvider {...rrfProps}>
+            <App />
+          </ReactReduxFirebaseProvider>
+        </Provider>
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,

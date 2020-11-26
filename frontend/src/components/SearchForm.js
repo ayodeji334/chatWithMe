@@ -13,7 +13,7 @@ function SearchForm() {
             <div className="w-auto h-auto py-2 px-1 border-b-2 border-gray-300">
                 <form onSubmit={handleSearchUser}>
                     <input
-                        className="rounded bg-gray-200 p-3 w-full focus:outline-none"
+                        className="rounded bg-gray-200 p-3 w-full focus:outline-none placeholder-gray-500"
                         type="search"
                         placeholder="Search chat here..."
                         required

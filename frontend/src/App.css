@@ -129,6 +129,7 @@ section.chakra-modal__content{
 .active_chat{
   border-right-color: #d401d4;
   border-right-width: 5px;
+  background-color: rgba(243, 243, 243, 0.808);
 }
 .side-details{
   padding: 0px 10px;

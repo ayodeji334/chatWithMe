@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
-import Axios from 'axios';
+// import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { connect } from 'react-redux';
+import { createUser } from '../utils/Actions/userAction';
 
-function Register() {
+function Register(props) {
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [cfmPassword, setCfmPassword] = useState('');
@@ -45,10 +47,13 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:8000/api/user/add-user", {
+        props.createNewUser({
+            firstname,
+            lastname,
             email,
-            password
-        }).then(res => console.log(res)).catch(err => console.log(err));
+            password,
+            created_at: new Date()
+        });
     }
 
     return (
@@ -202,7 +207,7 @@ function Register() {
                             {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
                         </div>
                         <div className="mb-4">
-                            <input className="appearance-none checked:bg-blue-600 checked:border-transparent" ref={acceptCheckbox} type="checkbox" onChange={toggleCheckBox } /> &nbsp;
+                            <input className="checked:bg-blue-600 checked:border-transparent" ref={acceptCheckbox} type="checkbox" onChange={toggleCheckBox } /> &nbsp;
                             <label htmlFor="checkbox">
                                 Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our default Notification Settings.
                             </label>
@@ -227,4 +232,10 @@ function Register() {
     )
 }
 
-export default Register
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createNewUser: (user) => dispatch(createUser(user))
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Register);
