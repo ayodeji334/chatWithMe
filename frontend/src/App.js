@@ -1,19 +1,38 @@
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import PrivateRoute from './components/Privateroute';
+// import PrivateRoute from './components/Privateroute';
 import Chat from './screens/Chat';
 import Login from './screens/Login';
 import Register from './screens/Register';
+import ForgetPassword from './screens/ForgetPassword';
+import NotMatch from './components/NotMatch';
 
-function App() {
+function App(props) {
+  const { user } = props;
+
   return (
     <div className="App h-full m-0 p-0">
-      <Switch>
-        <Route path="/" exact component={Login} />
-        <Route path="/register" component={Register} />
-        <PrivateRoute path="/chat" auth={false} component={Chat} />
-      </Switch>
+        {
+          !user.uid ? 
+            <Switch>
+              <Route path="/" exact component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/forget-password" component={ForgetPassword} />
+              <Route path="*" component={NotMatch} />
+            </Switch>
+            :
+            <Chat />
+        }
     </div>
   );
 }
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authErr,
+    user: state.firebase.auth
+  }
+};
+
+export default connect(mapStateToProps)(App);

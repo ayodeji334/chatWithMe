@@ -1,10 +1,13 @@
 html, body, #root{
   height: 100% !important;
-   font-family: -apple-system, BlinkMacSystemFont, 'Nunito', 'Segoe UI', 'Roboto', 'Oxygen',
+   font-family: -apple-system, BlinkMacSystemFont, 'Nunito', 'Monsterrat','Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+h1,h2,h3,h5,h6{
+  font-family: 'Montserrat', sans-serif !important;
 }
 .toggle-password-icon {
   float: right;
@@ -150,4 +153,18 @@ section.chakra-modal__content{
 .side-details::-webkit-scrollbar-thumb {
   background: #c50505;
   border-radius: 20px;
+}
+.user_profile{
+  padding: 25px 10px !important;
+  border-radius: 50px !important;
+  background-color: #f7f7f7 !important;
+}
+.user_menu .chakra-menu__menu-list{
+  left: 0 !important;
+}
+.font-bold {
+  font-weight: 700 !important;
+}
+.font-bolder{
+  font-weight: bolder !important;
 }

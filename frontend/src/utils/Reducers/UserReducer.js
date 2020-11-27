@@ -10,9 +10,11 @@ const userReducer = (state = initState, action) => {
             console.log("user created successfully", action.payload);
             return state;
         case ERROR_CREATING_USER:
-            console.log("error while creating the user", action.payload)
+            console.log("error while creating the user", action.payload);
+            return state;
+        default:
+            return state;
     }
-    return state
 }
 
 export default userReducer;

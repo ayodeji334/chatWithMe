@@ -22,7 +22,7 @@ function Chat() {
                         <div className="w-2/4 bg-white">
                             <Switch>
                                 <Route path={path} component={NoMessageSelected} exact />
-                                <Route path={`${path}/:id`} component={MessageContainer} /> 
+                                <Route path={`${path}/chat/:id`} component={MessageContainer} /> 
                             </Switch>
                         </div>
                         <UserDetail />
@@ -33,4 +33,4 @@ function Chat() {
     )
 }
 
-export default Chat
+export default Chat;

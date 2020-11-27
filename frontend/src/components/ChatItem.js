@@ -20,7 +20,7 @@ function ChatItem({ chat }) {
 
     return (
         <NavLink
-            to={`${url}/${chat.id}`}
+            to={`${url}/chat/${chat.id}`}
             activeClassName="active_chat"
             exact
             className="flex items-center py-2 px-2 hover:bg-gray-100 border-b border-gray-400">

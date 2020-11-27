@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
-// import Axios from 'axios';
+import { useRef, useState } from 'react'
 import { Link, useRouteMatch } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { signIn } from '../utils/Actions/authActions';
+import { useToast } from '@chakra-ui/react';
 
 function Login(props) {
     let { url } = useRouteMatch();
@@ -12,7 +12,35 @@ function Login(props) {
     const [password, setPassword] = useState('');
     const [toggle, setToggle] = useState(false);
     const passwordInput = useRef();
+    const { authError } = props;
+    const toast = useToast();
 
+    const showToast = () => {
+        let description = "";
+        switch (authError) {
+            case "auth/user-not-found":
+                description = "Invalid email and password!";
+                break;
+            case "auth/wrong-password":
+                description = "Invalid Password or User doesn't exist";
+                break;
+            case "auth/network-request-failed":
+                description = "Something went wrong. Please check the network and try again";
+                break;
+            default:
+                break;
+        };
+
+        toast({
+            title: "An Error Occurred",
+            position: "top-right",
+            description,
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+        })
+    };
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         props.signUserIn({ email, password });
@@ -35,18 +63,18 @@ function Login(props) {
                         <img className="m-auto my-3" src={logo} alt="logo" height="100" width="100" />
                         <h1 className="text-center my-3 font-bold text-xl">ChatWithMe App</h1>
                         <p className="my-5">
-                            Lorem ipsum dolor sit amet, 
-                            consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut 
-                            aliquip ex ea commodo consequat. 
-                            Duis aute irure dolor in reprehenderit 
-                            in voluptate velit esse cillum dolore 
-                            eu fugiat nulla pariatur. Excepteur 
-                            sint occaecat cupidatat non proident, 
-                            sunt in culpa qui officia deserunt 
+                            Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit
+                            in voluptate velit esse cillum dolore
+                            eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt
                             mollit anim id est laborum.
                         </p>
                     </div>
@@ -106,39 +134,34 @@ function Login(props) {
                             {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
                         </div>
                         <div className="text-left mb-3">
-                            <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" to="#">
+                            <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" to="/forget-password">
                                 Forgot Password?
                             </Link>
                         </div>
                         <div className="text-center">
                             <button className="w-40 shadow-lg rounded-full bg-gradient-to-r from-teal-400 to-blue-500 hover:from-red-400 hover:to-pink-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                            Login
+                                Login
                             </button>
                         </div>
                         <div className="my-6 text-center">
                             <p className="text-gray-900 text-sm">
                                 Don't have an account? {" "}
-                                    <Link className="text-sm text-blue-700 hover:text-black" to={`${url}register`}>
-                                        Sign Up
-                                    </Link>
+                                <Link className="text-sm text-blue-700 hover:text-black" to={`${url}register`}>
+                                    Sign Up
+                                </Link>
                             </p>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        authError: state.auth.authErr
-    } 
-}
 const mapDispatchToProps = (dispatch) => {
     return {
         signUserIn: (credentials) => dispatch(signIn(credentials))
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login);

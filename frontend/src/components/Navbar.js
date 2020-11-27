@@ -1,14 +1,49 @@
 import { BiBell } from "react-icons/bi";
-import { IconButton, Avatar } from '@chakra-ui/react';
+import {
+    IconButton,
+    Avatar,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    Button,
+    MenuGroup,
+    MenuDivider,
+} from '@chakra-ui/react';
 import React, { useState } from "react";
+import { BiChevronDown } from 'react-icons/bi';
+import { connect } from "react-redux";
+import { signOut } from "../utils/Actions/authActions";
 
-function Navbar() {
+function Navbar(props) {
     const [searchquery, setSearchQuery] = useState("");
+    const { user } = props;
 
     const handleSearchUsers = (e) => {
         e.preventDefault();
         console.log(searchquery);
-    }
+    };
+
+    const handleMenuAction = (e) => {
+        const { name } = e.currentTarget;
+        console.log(name);
+        switch (name) {
+            case "profile":
+                console.log(name);
+                break;
+            case "notifications":
+                console.log(name);
+                break;
+            case "settings":
+                console.log(name);
+                break;
+            case "logout":
+                props.logUserOut();
+                break;
+            default:
+                break;
+        };
+    };
 
     return (
         <header>
@@ -26,18 +61,43 @@ function Navbar() {
                         />
                     </form>
                 </div>
-                <div className="flex pr-3 items-center">
-                     <IconButton className="focus:outline-none" isRound={true} icon={<BiBell />} size="sm" aria-label="smiley" />
-                    <div className="ml-2 flex items-center">
-                        <Avatar size="sm" name={"Fawumi Odunayo"} src="..." />
-                        <div className="pl-2">
-                            <h6 className="font-bold text-lg"><strong>{"Fawumi Odunayo"}</strong></h6>
-                        </div>
-                    </div>
+                <div className="flex pr-3 items-center user_menu">
+                    <IconButton className="focus:outline-none mr-4" isRound={true} icon={<BiBell />} size="sm" aria-label="smiley" />
+                    <Menu closeOnSelect={false}>
+                        <MenuButton as={Button} className="user_profile" bgColor="red" rightIcon={<BiChevronDown />}>
+                             <div className="flex flex-row items-center">
+                                <Avatar size="sm" name={"Fawumi Odunayo"} src="..." />
+                                <h6 className="font-bold text-lg pl-2">{user.displayName}</h6>
+                            </div>
+                        </MenuButton>
+                        <MenuList>
+                             <MenuGroup title="Account" className="font-bold text-uppercase">
+                                <MenuItem className="focus:outline-none" onClick={handleMenuAction} name="profile">My Profile</MenuItem>
+                                <MenuItem className="focus:outline-none" onClick={handleMenuAction} name="notifications">Notifications </MenuItem>
+                            </MenuGroup>
+                            <MenuDivider />
+                            <MenuGroup title="Help" className="font-bold text-uppercase">
+                                <MenuItem className="focus:outline-none" onClick={handleMenuAction} name="settings">Settings</MenuItem>
+                                <MenuItem className="focus:outline-none" onClick={handleMenuAction} name="logout">Log Out</MenuItem>
+                            </MenuGroup>
+                        </MenuList>
+                    </Menu>
                 </div>
             </div>
         </header>
     )
-}
+};
 
-export default Navbar;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logUserOut: () => dispatch(signOut())
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.firebase.auth
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (Navbar);

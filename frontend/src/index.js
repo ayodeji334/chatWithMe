@@ -15,7 +15,7 @@ import { createFirestoreInstance } from 'redux-firestore';
 const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true
-}
+};
 
 // react-redux-firebase props
 const rrfProps = {
