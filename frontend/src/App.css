@@ -1,13 +1,13 @@
 html, body, #root{
   height: 100% !important;
-   font-family: -apple-system, BlinkMacSystemFont, 'Nunito', 'Monsterrat','Segoe UI', 'Roboto', 'Oxygen',
+   font-family: -apple-system, BlinkMacSystemFont, 'Nunito', 'Inter','Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 h1,h2,h3,h5,h6{
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 }
 .toggle-password-icon {
   float: right;

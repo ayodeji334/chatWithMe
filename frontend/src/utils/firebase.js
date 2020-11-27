@@ -16,13 +16,5 @@ export const firebaseConfig = {
 
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({
-  timestapsInSnapshots: true
-});
-
-var db = firebase.firestore();
-if (window.location.hostname === "localhost") {
-  db.useEmulator("localhost", 8080);
-}
 
 export default firebase;

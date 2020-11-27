@@ -5,11 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react";
-import { Provider, } from 'react-redux';
+import { Provider, useSelector, } from 'react-redux';
 import store from './utils/store';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { isLoaded, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import firebase from './utils/firebase';
 import { createFirestoreInstance } from 'redux-firestore';
+import AuthStateLoading from './components/AuthStateLoading';
 
 // react-redux-firebase config to store users in users collection
 const rrfConfig = {
@@ -22,7 +23,20 @@ const rrfProps = {
   firebase,
   config: rrfConfig,
   dispatch: store.dispatch,
-  createFirestoreInstance 
+  createFirestoreInstance,
+  userProfile: 'users',
+  presence: 'presence', // where list of online users is stored in database
+  sessions: 'sessions'
+}
+
+// Check the auth state.
+function AuthLoaded({children}){
+  const auth = useSelector(state => state.firebase.auth);
+  if (!isLoaded(auth)) {
+    return <AuthStateLoading />;
+  } else {
+    return children;
+  }
 }
 
 ReactDOM.render(
@@ -31,7 +45,9 @@ ReactDOM.render(
       <ChakraProvider>
         <Provider store={store}>
           <ReactReduxFirebaseProvider {...rrfProps}>
-            <App />
+            <AuthLoaded>
+              <App />
+            </AuthLoaded>
           </ReactReduxFirebaseProvider>
         </Provider>
       </ChakraProvider>

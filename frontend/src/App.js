@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-// import PrivateRoute from './components/Privateroute';
+import PrivateRoute from './components/Privateroute';
 import Chat from './screens/Chat';
 import Login from './screens/Login';
 import Register from './screens/Register';
@@ -13,17 +13,13 @@ function App(props) {
 
   return (
     <div className="App h-full m-0 p-0">
-        {
-          !user.uid ? 
-            <Switch>
-              <Route path="/" exact component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/forget-password" component={ForgetPassword} />
-              <Route path="*" component={NotMatch} />
-            </Switch>
-            :
-            <Chat />
-        }
+      <Switch>
+        <Route path="/" exact render={() => user.uid ? <Redirect to="/chat" /> : <Login />}/>
+        <Route path="/register" render={() => user.uid ? <Redirect to="/chat" /> : <Register />} />
+        <Route path="/forget-password" render={() => user.uid ? <Redirect to="/chat" /> : <ForgetPassword />} />
+        <PrivateRoute path="/chat" user={user.uid} component={Chat} />
+        <Route path="*" component={NotMatch} />
+      </Switch>
     </div>
   );
 }

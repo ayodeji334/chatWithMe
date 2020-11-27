@@ -47,35 +47,30 @@ export const signOut = () => {
 export const signUp= (user) => {
     return (dispatch, getState, getFirebase) => {
         const firebase = getFirebase();
-        //const firestore = firebase.firestore();
+        const firestore = firebase.firestore();
         firebase.auth().createUserWithEmailAndPassword(
            user.email,
            user.password
         ).then((res) => {
-            // var currentUser = firebase.auth().currentUser;
-            // //Update the user auth profile
-            // currentUser.updateProfile({
-            //     displayName: `${user.firstname} ${user.lastname}`
-            // });
-            // firestore.collection("users").doc(res.user.uid).set({
-            //     ...user,
-            //     uid: res.user.uid
-            // }).then(() => {
-            //     console.log(user);
-            //     dispatch({
-            //         type: SIGN_UP_SUCCESS,
-            //         payload: currentUser
-            //     });
-            // }).catch(err => {
-            //     dispatch({
-            //         type: SIGN_UP_ERROR,
-            //         payload: err
-            //     });
-            // });
-             dispatch({
-                type: SIGN_UP_SUCCESS,
-                payload: res.user,
-                isAuthenticated: true
+            var currentUser = firebase.auth().currentUser;
+            //Update the user auth profile
+            currentUser.updateProfile({
+                displayName: `${user.firstname} ${user.lastname}`
+            });
+            firestore.collection("users").doc(res.user.uid).set({
+                ...user,
+                uid: res.user.uid
+            }).then(() => {
+                console.log(user);
+                dispatch({
+                    type: SIGN_UP_SUCCESS,
+                    payload: currentUser
+                });
+            }).catch(err => {
+                dispatch({
+                    type: SIGN_UP_ERROR,
+                    payload: err
+                });
             });
         }).catch(err => {
             dispatch({

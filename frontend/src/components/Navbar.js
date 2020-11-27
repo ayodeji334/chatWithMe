@@ -26,7 +26,6 @@ function Navbar(props) {
 
     const handleMenuAction = (e) => {
         const { name } = e.currentTarget;
-        console.log(name);
         switch (name) {
             case "profile":
                 console.log(name);
@@ -67,7 +66,7 @@ function Navbar(props) {
                         <MenuButton as={Button} className="user_profile" bgColor="red" rightIcon={<BiChevronDown />}>
                              <div className="flex flex-row items-center">
                                 <Avatar size="sm" name={"Fawumi Odunayo"} src="..." />
-                                <h6 className="font-bold text-lg pl-2">{user.displayName}</h6>
+                            <h6 className="font-bold text-lg pl-2">{`${user.firstname} ${user.lastname}`}</h6>
                             </div>
                         </MenuButton>
                         <MenuList>
@@ -96,7 +95,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.firebase.auth
+        user: state.firebase.profile
     };
 };
 
