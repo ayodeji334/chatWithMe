@@ -11,6 +11,9 @@ import { isLoaded, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import firebase from './utils/firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import AuthStateLoading from './components/AuthStateLoading';
+import { enableMapSet } from 'immer';
+
+enableMapSet(); //Enable immer;
 
 // react-redux-firebase config to store users in users collection
 const rrfConfig = {

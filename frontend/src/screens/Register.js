@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { signUp } from '../utils/Actions/authActions';
+import { useToast } from '@chakra-ui/react';
 
 function Register(props) {
     const [firstname, setFirstname] = useState('');
@@ -17,7 +18,41 @@ function Register(props) {
     const passwordInput = useRef();
     const cfmPasswordInput = useRef();
     const acceptCheckbox = useRef();
-    const { authState } = props;
+    const toast = useToast();
+    const { authError } = props;
+
+    useEffect(() => {
+        const showToast = () => {
+            let description = "";
+
+            switch (authError) {
+                case "auth/user-not-found":
+                    description = "Invalid email and password!";
+                    break;
+                case "auth/wrong-password":
+                    description = "Invalid Password or User doesn't exist";
+                    break;
+                case "auth/network-request-failed":
+                    description = "Something went wrong. Please check the network and try again";
+                    break;
+                default:
+                    break;
+            };
+            toast({
+                title: "An Error Occurred",
+                position: "top-right",
+                description,
+                status: "error",
+                duration: 9000,
+                isClosable: true,
+            });
+        };
+
+        if (authError) {
+            showToast()
+        };
+        
+    }, [authError,toast]);
 
     const togglePassword = () => {
         setPasswToggle(!passwToggle);
@@ -83,14 +118,14 @@ function Register(props) {
             </div>
             <div className="w-full md:3/4 md:mx-auto lg:w-1/2 h-full">
                 <div className="w-full h-full bg-white m-auto flex justify-center md:items-center">
-                    <form className="bg-white rounded px-5 pt-6 mt-1 w-full md:w-3/4 lg:w-4/5" onSubmit={handleSubmit}>
+                    <form className="bg-white rounded px-5 py-8 mt-1 w-full md:w-3/4 lg:w-4/5" onSubmit={handleSubmit}>
                         <div className="text-black mt-2 mb-6 text-center">
-                            <h1 className="text-3xl font-bold">Let's get started</h1>
-                            <p className="text-sm">Create an account to connect with your friends</p>
+                            <h1 className="text-3xl font-bolder">Let's get started</h1>
+                            <p className="text-base md:text-sm">Create an account to connect with your friends</p>
                         </div>
                         <div className="flex mb-2 flex-col xl:flex-row">
                             <div className="mb-4 mr-3 w-full xl:w-1/2">
-                                <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
+                                <label className="block text-base md:text-sm text-black font-bold mb-2" htmlFor="username">
                                     Firstname
                                 </label>
                                 <input
@@ -112,7 +147,7 @@ function Register(props) {
                                 />
                             </div>
                             <div className="w-full xl:w-1/2">
-                                <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
+                                <label className="block text-base md:text-sm text-black font-bold mb-2" htmlFor="username">
                                     Lastname
                                 </label>
                                 <input
@@ -135,7 +170,7 @@ function Register(props) {
                             </div>
                         </div>
                         <div className="mb-4">
-                            <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
+                            <label className="block text-black text-base md:text-sm font-bold mb-2" htmlFor="username">
                                 Email
                             </label>
                             <input
@@ -157,7 +192,7 @@ function Register(props) {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-black text-sm font-bold mb-2" htmlFor="password">
+                            <label className="block text-base md:text-sm text-black font-bold mb-2" htmlFor="password">
                                 Password
                             </label>
                             <input
@@ -183,7 +218,7 @@ function Register(props) {
                             {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
                         </div>
                         <div className="mb-4">
-                            <label className="block text-black text-sm font-bold mb-2" htmlFor="password">
+                            <label className="block text-base md:text-sm text-black font-bold mb-2" htmlFor="password">
                                 Confirm Password
                             </label>
                             <input
@@ -215,14 +250,14 @@ function Register(props) {
                             </label>
                         </div>
                         <div className="text-center">
-                            <button disabled={isDisabled} className={`${isDisabled ? "opacity-50 cursor-not-allowed" : null} w-40 rounded-full shadow-lg bg-gradient-to-r from-teal-400 to-blue-500 hover:from-red-400 hover:to-pink-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline rounded-full`} type="submit">
+                            <button disabled={isDisabled} className={`${isDisabled ? "opacity-50 cursor-not-allowed" : null} w-40 rounded-full shadow-lg bg-gradient-to-r from-teal-400 to-blue-500 hover:from-red-400 hover:to-pink-700 text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline rounded-full`} type="submit">
                                 Create Account
                             </button>
                         </div>
                         <div className="my-5 text-center">
-                            <p className="text-gray-900 text-sm">
+                            <p className="text-black text-base md:text-sm">
                                 Already have an account? {" "}
-                                <Link className="text-sm text-blue-700 hover:text-black" to="/">
+                                <Link className="text-base md:text-sm text-blue-700 hover:text-black" to="/">
                                     Sign in
                                     </Link>
                             </p>
@@ -236,7 +271,7 @@ function Register(props) {
 
 const mapStateToProps = (state) => {
     return {
-        authState: state.firebase.auth
+       authError: state.auth.authErr
     }
 }
 

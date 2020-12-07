@@ -1,8 +1,9 @@
 import { Avatar, AvatarBadge, Badge, Stack } from "@chakra-ui/react";
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { connect } from "react-redux";
+import { NavLink } from 'react-router-dom';
+import { selectChat } from "../utils/Actions/chatActions";
 
-function ChatItem({ chat }) {
-    let { url } = useRouteMatch();
+function ChatItem({ chat, selectChat }) {
 
     // function convertTime(time){
     //     const convertToMil = time.seconds * 1000;
@@ -20,9 +21,12 @@ function ChatItem({ chat }) {
 
     return (
         <NavLink
-            to={`${url}/${chat.id}`}
+            to={`/chat/${chat.id}`}
             activeClassName="active_chat"
             exact
+            onClick={() => {
+                selectChat(chat);
+            }}
             className="flex items-center py-2 px-2 hover:bg-gray-100 border-b border-gray-400">
             <div className="chat-message-container w-9/12">
                 <Stack isInline>
@@ -35,8 +39,11 @@ function ChatItem({ chat }) {
                     </div>
                 </Stack>
             </div>
-            <div className="chat-stat w-3/12 flex-col text-right">
-                <span className="text-sm flex justify-center items-center text-gray-700 m-0">{chat.created_at.toLocaleTimeString()}</span>
+            <div className="chat-stat w-3/12 flex flex-col text-right">
+                <span
+                    className="text-xs md:text-sm text-gray-700 m-0">
+                    {chat.created_at.toLocaleTimeString()}
+                </span>
                 {
                     true
                     ? 
@@ -51,4 +58,10 @@ function ChatItem({ chat }) {
     )
 }
 
-export default ChatItem
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectChat: (chat) => dispatch(selectChat(chat))
+    }
+}
+export default connect(null, mapDispatchToProps)(ChatItem)

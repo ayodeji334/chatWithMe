@@ -1,5 +1,5 @@
 import React from 'react'
-import { BiHomeCircle,BiBell,BiUser } from "react-icons/bi";
+import { BiHomeCircle,BiBell,BiUser, BiBook } from "react-icons/bi";
 import { GrStatusGood } from "react-icons/gr";
 import { FiSettings } from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
@@ -24,6 +24,9 @@ function Sidenav() {
                 </Tooltip>
                 <Tooltip label="Profile">
                     <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/profile"><BiUser size="27px"/></NavLink>
+                </Tooltip> 
+                <Tooltip label="Notes">
+                    <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/notes"><BiBook size="27px"/></NavLink>
                 </Tooltip> 
                 <Tooltip label="Settings">
                     <NavLink className="flex justify-center items-center py-3 my-2 mx-1 hover:text-purple-800 rounded text-white hover:bg-gray-100" activeClassName="active_link" exact to="/settings"><FiSettings size="27px"/></NavLink>

@@ -1,13 +1,10 @@
 html, body, #root{
   height: 100% !important;
-   font-family: -apple-system, BlinkMacSystemFont, 'Nunito', 'Inter','Segoe UI', 'Roboto', 'Oxygen',
+   font-family: -apple-system, BlinkMacSystemFont, 'Nunito Sans', 'Nunito','Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-h1,h2,h3,h5,h6{
-  font-family: 'Inter', sans-serif !important;
 }
 .toggle-password-icon {
   float: right;
@@ -41,7 +38,7 @@ h1,h2,h3,h5,h6{
   flex: 1;
   max-height: 540px;
 }
-.chat-list-container::-webkit-scrollbar {
+.message-body::-webkit-scrollbar,.chat-list-container::-webkit-scrollbar {
   width: 7px;
 }
 .chakra-modal__header,.chakra-modal__body{
@@ -50,11 +47,11 @@ h1,h2,h3,h5,h6{
 section.chakra-modal__content{
   max-width: 32rem !important;
 }
-.chat-list-container::-webkit-scrollbar-track {
+.message-body::-webkit-scrollbar-track,.chat-list-container::-webkit-scrollbar-track {
   background: #ddd;
 }
-.chat-list-container::-webkit-scrollbar-thumb {
-  background: #18001b;
+.message-body::-webkit-scrollbar-thumb,.chat-list-container::-webkit-scrollbar-thumb {
+  background: #554757;
 }
 .message-body{
   padding: 0px 10px;
@@ -62,7 +59,8 @@ section.chakra-modal__content{
   overflow-y: auto;
   align-items: center;
   justify-content: center;
-  max-height: 625px;
+  max-height: 550px;
+  position: relative;
 }
 .chakra-menu__menu-button{
   display: flex;
@@ -81,9 +79,6 @@ section.chakra-modal__content{
   top: 10px !important;
   left: -185px !important;
   position: absolute;
-}
-.message-body{
-  height: calc(100% - 126px) !important;
 }
 .message-body p{
   margin-top: 0 !important;
@@ -167,4 +162,32 @@ section.chakra-modal__content{
 }
 .font-bolder{
   font-weight: bolder !important;
+}
+.notifications_container,
+.status_container,
+.settings_container,
+.profile_container{
+  height: 100%;
+  width: 100%;
+}
+.user-info{
+  margin-top: -20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  z-index: 12;
+}
+.message-form {
+  width: calc(100% - 43px);
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .chat-list-container::-webkit-scrollbar {
+    display: none;
+  };
+  .message-body::-webkit-scrollbar{
+    display: none;
+    visibility: hidden;
+  }
 }

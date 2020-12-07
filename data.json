@@ -1,0 +1,30 @@
+[
+    {
+        "firstname": "Fawumi",
+        "lastname": "Odunayo",
+        "username": "fawumi",
+        "email": "fawumiodunayo@gmail.com",
+        "password": "password"
+    },
+    {
+        "firstname": "Babalola",
+        "lastname": "Samuel",
+        "username": "samuel",
+        "email": "samuel@gmail.com",
+        "password": "password"
+    },
+    {
+        "firstname": "Adeniyi",
+        "lastname": "Odunla",
+        "username": "adeniyi",
+        "email": "adeniyiodunola@gmail.com",
+        "password": "password"
+    },
+    {
+        "firstname": "Adejoke",
+        "lastname": "Aderemi",
+        "username": "aderemi",
+        "email": "aderemiadejoke@gmail.com",
+        "password": "password"
+    }
+]

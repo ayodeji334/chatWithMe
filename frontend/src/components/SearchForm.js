@@ -1,12 +1,38 @@
-import { useState } from 'react';
+import produce from 'immer';
+import { useEffect, useState } from 'react';
+import SearchItem from './SearchItem';
 
-function SearchForm() {
+function SearchForm({ users }) {
     const [searchquery, setSearchQuery] = useState("");
+    const [filteredUsersArray, setFilteredUsersArray] = useState([]);
     
     const handleSearchUser = (e) => {
         e.preventDefault();
         console.log(searchquery);
     };
+
+    useEffect(() => {
+        const handleFilterUser = () => {
+            if (searchquery === "") {
+                return false;
+            } else {
+                const filterUsers = (state) => {
+                    return produce(state, (draft) => {
+                        return draft.filter((user) => {
+                            console.log(user);
+                            return user.firstname.toLowerCase().includes(searchquery)
+                                || user.lastname.toLowerCase().includes(searchquery);
+                        });
+                    });
+                };
+                const newUsersArray = filterUsers(users);
+                setFilteredUsersArray(newUsersArray);
+                console.log(newUsersArray);
+            };
+        };
+        
+        handleFilterUser();
+    }, [searchquery, users]);
     
     return (
         <>
@@ -23,11 +49,29 @@ function SearchForm() {
                     />
                 </form>
             </div>
-            <div className="px-2 py-3">
-                <h1>Search result</h1>
-            </div>
+            <>
+                {
+                    searchquery === "" ?
+                        <p className="py-3 px-2">Search for your friends...</p>
+                        :
+                        filteredUsersArray.length !== 0 ?
+                            (
+                                <>
+                                    {
+                                        filteredUsersArray.map(
+                                            user => <SearchItem key={user.uid} user={user} />
+                                        )
+                                    }
+                                </>
+                            )
+                            :
+                            (
+                                <p className="py-3 px-2">No matched Results</p>
+                            )
+                }
+            </>
         </>
-    )
+    );
 }
 
 export default SearchForm

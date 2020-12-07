@@ -4,6 +4,8 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const userRoute = require("./routes/user");
+const chatRoute = require("./routes/chat");
 
 //Enviroment var config
 dotenv.config();
@@ -12,14 +14,13 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
 
-//Connection to Db with mongoose
+//Connection to Db
 mongoose
   .connect("mongodb://localhost:27017/chatWithMe", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false,
-  })
-  .then(() => {
+  }).then(() => {
     console.log("Db connected");
     //Create Port
     const port = 8000;
@@ -30,11 +31,10 @@ mongoose
     console.log(err);
   });
 
-//Routes
-const userRouteController = require("./routes/UserRoutes");
-
-//Endpoint
-app.use("/api/user", userRouteController);
+//Endpoints
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/chat", chatRoute);
+// app.use("/api/v1/message", userRouteController);
 
 //Check for error
 app.use((req, res, next) => {

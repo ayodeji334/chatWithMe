@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Stack,
     Modal,
@@ -15,16 +15,27 @@ import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import ChatItem from './ChatItem';
 import CreateGroupForm from './CreateGroupForm';
 import { connect } from 'react-redux';
+import produce from 'immer';
+import { useSelector } from 'react-redux';
+import { useFirestoreConnect } from 'react-redux-firebase';
+import Status from '../screens/Status';
 
-function Chatlist({ user_chats}) { 
-    const [searchquery, setSearchQuery] = useState("");
+function Chatlist({ user_chats }) {
+    const [userChats, setUserChats] = useState(user_chats);
+    const [query, setQuery] = useState("");
     const [openGroupModal, setOpenGroupModal] = useState(false);
     const [openChatModal, setOpenChatModal] = useState(false);
+    const uid = useSelector(state => state.firebase.auth.uid);
 
-    const handleSearchChat = (e) => {
-        e.preventDefault();
-        console.log(searchquery);
-    };
+    useFirestoreConnect([
+        { collection: 'users' },
+        { collection: 'chats', where: ["sender_id", "==", uid] },
+        { collection: 'chats', where: ["receiver_id", "==", uid] }
+    ]);
+    const users = useSelector((state) => state.firestore.ordered.users);
+    const chats = useSelector(state => state.firestore.ordered.chats);
+
+    console.log(chats);
 
     function openModal(event) {
         const clickBtnName = event.currentTarget.name;
@@ -33,7 +44,27 @@ function Chatlist({ user_chats}) {
         } else {
             setOpenChatModal(!openChatModal);
         }
-    }
+    };
+
+    useEffect(() => {
+        const handleFilterChat = () => {
+            if (query === "") {
+                setUserChats(user_chats);
+            } else {
+                const filterChats = (state) => {
+                    return produce(state, (draft) => {
+                        return draft.filter((chat) => {
+                           return chat.receiver_name.toLowerCase().includes(query);
+                        });
+                    });
+                };
+                const newChatsArray = filterChats(user_chats);
+                setUserChats(newChatsArray);
+            };
+        };
+        
+        handleFilterChat();
+    }, [query, user_chats]);
 
    function closeModal(event) {
         const clickCloseBtnName = event.currentTarget.name;
@@ -42,10 +73,10 @@ function Chatlist({ user_chats}) {
         } else {
             setOpenChatModal(!openChatModal);
         }
-    }
-  
+    };
+
     return (
-        <div className="h-full w-1/4 border-r-2 border-fuchsia-600 bg-white">
+        <div className="h-full w-full lg:w-1/4 border-r-2 border-fuchsia-600 bg-white">
             <div className="flex items-center justify-between py-3 px-2 border-b-2 border-fuchsia-600">
                 <h5 className="m-0 font-bold text-black text-xl">Chats</h5>
                 <div>
@@ -72,22 +103,37 @@ function Chatlist({ user_chats}) {
                 </div>
             </div>
             <div className="py-3 px-2">
-                <form onSubmit={handleSearchChat}>
+                <div className="lg:hidden">
+                   <Status />
+                </div>
+                <form className="hidden lg:block">
                     <input
                         type="text"
                         className="rounded-full bg-gray-200 p-3 w-full focus:outline-none"
-                        placeholder="Search friends..."
+                        placeholder="Search chats..."
                         onChange={(e) => {
-                            setSearchQuery(e.target.value)
+                            setQuery(e.target.value);
                         }}
                     />
                 </form>
             </div>
             <div className="chat-list-container py-0 border-t border-gray-400 overflow-auto">
                 {
-                    user_chats && user_chats.map((chat) => (
-                        <ChatItem chat={chat} key={chat.id} />
-                    ))
+                    !userChats
+                        ?
+                            <div
+                                className="h-full w-full flex justify-center items-center">
+                                <p>You don't any chat add one to get started.</p>
+                            </div>
+                        :
+                            userChats.length > 0 ?
+                               userChats.map((chat) => (
+                                    <ChatItem chat={chat} key={chat.id} />
+                                ))
+                            :
+                            <p className="py-3 w-full text-center text-lg font-bolder">
+                                No chat matched
+                            </p>  
                 }
             </div>
             
@@ -114,7 +160,7 @@ function Chatlist({ user_chats}) {
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                        <SearchForm />
+                        <SearchForm users={users} />
                     </ModalBody>
                 </ModalContent>
             </Modal>
@@ -149,10 +195,11 @@ function Chatlist({ user_chats}) {
     );
 }
 
+
 function mapStateToProps(state) {
     return {
         user_chats: state.chat.current_user_chats
     }
-}
+};
 
 export default connect(mapStateToProps)(Chatlist);

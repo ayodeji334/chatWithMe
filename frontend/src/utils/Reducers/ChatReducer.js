@@ -1,5 +1,4 @@
-// import { ADD_CHAT } from '../ActionTypes/actionTypes';
-// import { REMOVE_CHAT } from '../ActionTypes/actionTypes';
+import { ADD_CHAT, SELECT_CHAT } from "../ActionTypes/actionTypes";
 
 const initState = {
     current_user_chats: [
@@ -143,10 +142,25 @@ const initState = {
             receiver_name: "Itunu",
             receiver_img_src: "....",
         }
-    ]
+    ],
+    selected_chat: {}
 };
 
-
-export default function chatReducer(state = initState, action) {
-    return state
+const chatReducer = (state = initState, action) =>{
+    switch (action.type) {
+        case ADD_CHAT: 
+            return {
+                ...state,
+                current_user_chats: [...state.current_user_chats, action.payload]
+            }
+        case SELECT_CHAT: 
+            return {
+                ...state,
+                selected_chat: action.payload
+            }
+        default:
+            return state;
+    };
 }
+
+export default chatReducer;
