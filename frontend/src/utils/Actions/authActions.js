@@ -44,7 +44,7 @@ export const signOut = () => {
     }
 }
 
-export const signUp= (user) => {
+export const signUp = (user) => {
     return (dispatch, getState, getFirebase) => {
         const firebase = getFirebase();
         const firestore = firebase.firestore();

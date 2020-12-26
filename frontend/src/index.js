@@ -13,7 +13,7 @@ import { createFirestoreInstance } from 'redux-firestore';
 import AuthStateLoading from './components/AuthStateLoading';
 import { enableMapSet } from 'immer';
 
-enableMapSet(); //Enable immer;
+enableMapSet(); 
 
 // react-redux-firebase config to store users in users collection
 const rrfConfig = {
@@ -28,7 +28,7 @@ const rrfProps = {
   dispatch: store.dispatch,
   createFirestoreInstance,
   userProfile: 'users',
-  presence: 'presence', // where list of online users is stored in database
+  presence: 'presence',
   sessions: 'sessions'
 }
 

@@ -28,8 +28,7 @@ function Chat() {
             screenWidth < 970
                 ? 
                 (
-                    <div className="mobile h-full">
-                        <Navbar />
+                    <div className="mobile h-full flex flex-col">
                         <Switch>
                             <Route path={path} component={Chatlist} exact/>
                             <Route path="/chat/:id" component={MessageContainer} />
