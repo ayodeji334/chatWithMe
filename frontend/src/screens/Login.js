@@ -145,7 +145,7 @@ function Login(props) {
                             </Link>
                         </div>
                         <div className="text-center">
-                            <button className="w-40 shadow-lg rounded-full bg-gradient-to-r from-teal-400 to-blue-500 hover:from-red-400 hover:to-pink-700 text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            <button className="w-40 shadow-lg rounded-full bg-gradient-to-r from-teal-400 to-blue-500 hover:from-red-400 hover:to-pink-700 text-white font-bold py-4 px-4 focus:outline-none focus:shadow-outline" type="submit">
                                 Login
                             </button>
                         </div>

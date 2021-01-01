@@ -12,10 +12,18 @@ import {
     BiTrash,
     BiUserMinus
 } from "react-icons/bi";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-function MessageHeader({currentChat}) {
+function MessageHeader({ currentChat }) {
     const history = useHistory();
+    const uid = useSelector(state => state.firebase.auth.uid);
+
+    const goToProfile = () => {
+        const id = currentChat.createdBy === uid ? currentChat.receiver : currentChat.createdBy;
+        history.push(`/profile/${id}`);
+    };
+
     return (
         <div className="message-container-header flex flex-row justify-between items-center p-2 border-b border-gray-400">
             <div className="chat_user_detail flex items-center">
@@ -25,9 +33,11 @@ function MessageHeader({currentChat}) {
                 >
                     <BiArrowBack fontSize="20px" />
                 </button>
-                <Avatar size="sm" name={currentChat.receiver_name} src="..." />
+                <Avatar size="sm" name={currentChat.createdBy === uid ? currentChat.receiver : currentChat.createdBy} src="..." />
                 <div className="pl-2">
-                    <h6 className="font-bold text-base lg:text-lg"><strong>{currentChat.receiver_name}</strong></h6>
+                    <h6 onClick={goToProfile} className="pointer font-bold text-base lg:text-lg">
+                        {currentChat.createdBy === uid ? currentChat.receiver : currentChat.createdBy}
+                    </h6>
                     {true ? <p className="text-xs lg:text-sm">Online</p> : <p className="text-sm">Last seen 13 hour ago</p> }
                 </div>
             </div>

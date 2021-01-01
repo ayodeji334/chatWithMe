@@ -32,13 +32,13 @@ function UserDetail() {
     }
 
     return (
-        <div className="side-details py-5 px-3 w-1/4 bg-white border-l-2 border-fuchsia-600">
+        <div className="side-details py-5 px-3 bg-white border-l-2 border-fuchsia-600">
             <div className="flex justify-center items-center flex-col py-3">
                 <Avatar size="lg" name={`Odunayo`} src="..." />
                 <h5 className="pt-2 pb-2 m-0 text-lg font-bold"><strong>{`Odunayo`}</strong></h5>
                 <button
                     onClick={toggleButton}
-                    className={`${follow ? "bg-purple-600 hover:from-purple-400 hover:to-purple-700 text-white" : "bg-blue-600 hover:from-blue-400 hover:to-blue-700 text-white" } py-3 px-4 rounded font-bold rounded-full focus:outline-none`} type="submit">
+                    className={`${follow ? "bg-purple-600 hover:from-purple-400 hover:to-purple-700 text-white" : "bg-blue-600 hover:from-blue-400 hover:to-blue-700 text-white" } py-3 px-4 font-bold rounded-full focus:outline-none`} type="submit">
                     {follow ? "Following" : "Follow"}
                 </button>
             </div>

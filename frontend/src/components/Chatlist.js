@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
     Stack,
     Modal,
@@ -15,28 +15,21 @@ import { BiPlus } from 'react-icons/bi';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import ChatItem from './ChatItem';
 import CreateGroupForm from './CreateGroupForm';
-import { connect } from 'react-redux';
 import produce from 'immer';
 import { useSelector } from 'react-redux';
-import { useFirestoreConnect } from 'react-redux-firebase';
 import { FaBars } from 'react-icons/fa';
 import FooterTab from './FooterTab';
 import SlideMenu from './SlideMenu';
 
-function Chatlist({ user_chats }) {
-    useFirestoreConnect([
-        {
-            collection: 'chats'
-        }
-    ]);
-    const chats = useSelector(state => state.firestore.ordered.chats);
+function Chatlist() {
+    const uid = useSelector(state => state.firebase.profile.uid);
+    const users = useSelector((state) => state.firestore.ordered.users);
+    const chats = useSelector((state) => state.chat.user_chats);
     const [showMenu, setShowMenu] = useState(false);
-    const [userChats, setUserChats] = useState([]);
+    const [userChats, setUserChats] = useState(chats);
     const [query, setQuery] = useState("");
     const [openGroupModal, setOpenGroupModal] = useState(false);
-    const [openChatModal, setOpenChatModal] = useState(false);
-    const uid = useSelector(state => state.firebase.profile.uid);
-    const users = useSelector((state) => state.firestore.ordered.users); 
+    const [openChatModal, setOpenChatModal] = useState(false); 
 
     function openModal(event) {
         const clickBtnName = event.currentTarget.name;
@@ -47,40 +40,26 @@ function Chatlist({ user_chats }) {
         }
     };
 
-    useEffect(() => { 
-        const getUserChats = (state) => {
-            return produce(state, (draft) => {
-                 return draft.filter((chat) => {
-                    return chat.createdBy === uid || chat.receiver === uid;
-                });
-            })
-        }
-        setUserChats(getUserChats(chats))
-    }, [chats, uid])
-
     const toggleShowMenu = () => {
         setShowMenu(!showMenu);
-    };
+    }
 
-    useEffect(() => {
-        const handleFilterChat = () => {
-            if (query === "") {
-                setUserChats(user_chats);
-            } else {
-                const filterChats = (state) => {
-                    return produce(state, (draft) => {
-                        return draft.filter((chat) => {
-                           return chat.receiver_name.toLowerCase().includes(query);
-                        });
+    const handleFilterChat = (e) => {
+        setQuery(e.target.value);
+        if (query === "") {
+            setUserChats(chats);
+        } else {
+            const filterChats = (state) => {
+                return produce(state, (draft) => {
+                    return draft.filter((chat) => {
+                        return chat.receiver_name.toLowerCase().includes(query);
                     });
-                };
-                const newChatsArray = filterChats(user_chats);
-                setUserChats(newChatsArray);
+                });
             };
+            const newChatsArray = filterChats(chats);
+            setUserChats(newChatsArray);
         };
-        
-        handleFilterChat();
-    }, [query, user_chats]);
+    };
 
     function closeModal(event) {
         const clickCloseBtnName = event.currentTarget.name;
@@ -93,7 +72,7 @@ function Chatlist({ user_chats }) {
 
     return (
         <>
-            <div className="h-full w-full lg:w-1/4 border-r-2 border-fuchsia-600 bg-white">
+            <div className="chats-list h-full w-full border-r-2 border-fuchsia-600 bg-white">
                 <SlideMenu show={showMenu} toggleShow={toggleShowMenu} />
                 <div className="flex items-center justify-between py-3 px-2 border-b-2 border-fuchsia-600">
                     <Heading size="sm" fontSize="18px" className="pl-3">
@@ -136,19 +115,17 @@ function Chatlist({ user_chats }) {
                             type="text"
                             className="rounded-full bg-gray-200 p-3 w-full focus:outline-none"
                             placeholder="Search chats..."
-                            onChange={(e) => {
-                                setQuery(e.target.value);
-                            }}
+                            onChange={handleFilterChat}
                         />
                     </form>
                 </div>
                 <div className="chat-list-container py-0 border-t border-gray-400 overflow-auto">
                     {
-                        !userChats
+                        userChats.length === 0
                             ?
                                 <div
-                                    className="h-full w-full flex justify-center items-center">
-                                    <p>You don't any chat add one to get started.</p>
+                                    className="h-full w-full flex flex-col justify-center items-center">
+                                    <p className="py-4 font-extrabold">You don't any chat add one to get started.</p>
                                 </div>
                             :
                                 userChats.length > 0 ?
@@ -222,11 +199,4 @@ function Chatlist({ user_chats }) {
     );
 }
 
-
-function mapStateToProps(state) {
-    return {
-        user_chats: state.chat.current_user_chats
-    }
-};
-
-export default connect(mapStateToProps)(Chatlist);
+export default Chatlist;

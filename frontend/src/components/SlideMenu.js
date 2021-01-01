@@ -12,7 +12,7 @@ function SlideMenu({show, toggleShow}) {
     };
 
     return (
-        <div className={show ? "w-full h-full absolute z-50" : "hidden"}>
+        <div className={show ? "w-full h-full absolute z-50 lg:hidden" : "hidden"}>
             <div className="w-full h-full slide-menu-overlay">
                 <div className="h-full w-3/5 bg-white left-0 transition-all">
                     <div className="flex flex-row justify-between items-center px-3 py-2 border-b-2 border-gray-300">

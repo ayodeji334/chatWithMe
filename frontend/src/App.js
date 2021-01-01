@@ -11,6 +11,7 @@ import Profile from './screens/Profile';
 import Notifications from './screens/Notifications';
 import Settings from './screens/Settings';
 import MessageContainer from './components/MessageContainer';
+import EditProfile from './screens/EditProfile';
 
 function App(props) {
   const { user } = props;
@@ -23,7 +24,8 @@ function App(props) {
         <Route path="/forget-password" render={() => user.uid ? <Redirect to="/chat" /> : <ForgetPassword />} />
         <PrivateRoute path="/chat" user={user.uid} component={Chat} />
         <PrivateRoute path="/chat/:id" user={user.uid} component={MessageContainer} />
-        <PrivateRoute path="/profile" user={user.uid} component={Profile} />
+        <PrivateRoute path="/profile/:id" user={user.uid} component={Profile} />
+        <PrivateRoute path="/edit-profile/:id" user={user.uid} component={EditProfile} />
         <PrivateRoute path="/notificatons" user={user.uid} component={Notifications}/>
         <PrivateRoute path="/settings" user={user.uid} component={Settings}/>
         <Route path="*" component={NotMatch} />

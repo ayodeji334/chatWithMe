@@ -2,9 +2,14 @@ import { IconButton, Stack } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { BiSend } from 'react-icons/bi';
 import { ImAttachment  } from 'react-icons/im';
+import { useDispatch, useSelector } from 'react-redux';
+import { addChatMessage } from '../utils/Actions/chatActions';
 
-function MessageFooter() {
+function MessageFooter({ chat }) {
+    const uid = useSelector(state => state.firebase.auth.uid);
+    const user = useSelector(state => state.firebase.profile);
     const [newMessage, setMessage] = useState("");
+    const dispatch = useDispatch();
 
     return (
         <div className="border-t border-gray-400 flex flex-row items-center justify-between py-2">
@@ -31,7 +36,24 @@ function MessageFooter() {
 
     function handleSendMessage(event) {
         event.preventDefault();
-        // sendMessage(newMessage);
+        let chatReceiverId;
+        if (uid === chat.createdBy) {
+            chatReceiverId = chat.receiver;
+        } else {
+            chatReceiverId = chat.createdBy;
+        }
+
+        const message = {
+            chatId: chat.id,
+            text: newMessage,
+            senderId: uid,
+            senderFullName: `${user.lastname} ${user.firstname}`,
+            receiverId: chatReceiverId,
+            messageType: 'one-to-one',
+            createdAt:  new Date()
+        };
+
+        dispatch(addChatMessage(message))
         setMessage("");
     }
 

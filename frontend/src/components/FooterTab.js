@@ -13,7 +13,7 @@ function FooterTab(props) {
         <>
             {/* <AddChatBtn /> */}
             <div
-                className="bg-white py-1 px-3 flex flex-row items-center justify-between border-t-2 border-gray-200">
+                className="bg-white py-1 px-3 flex flex-row lg:hidden items-center justify-between border-t-2 border-gray-200">
                 <button
                     className="bg-gray-100 p-3 rounded-full flex justify-center items-center outline-none focus:outline-none"
                     onClick={() => history.push("/chat", {

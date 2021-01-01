@@ -8,7 +8,7 @@ import {
     TabPanels,
     Tabs,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BiArrowBack, BiCake, BiCalendar, BiLink, BiLocationPlus } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -16,9 +16,11 @@ import Loading from "../components/Loading";
 import Sidenav from '../components/Sidenav';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { getFirebase } from "react-redux-firebase";
 
 function Profile() {
-    const user = useSelector((state) => state.firebase.profile);
+    const active_user = useSelector(state => state.firebase.profile);
+    const [user, setUser] = useState({});
     const [follow, setFollow] = useState(false);
     const history = useHistory();
     const { id } = useParams();
@@ -48,16 +50,38 @@ function Profile() {
         }   
     };
 
+    useEffect(() => {
+        let subscribe = true;
+        const firestore = getFirebase().firestore();
+        if (user.uid === id) {
+            setUser(active_user);
+        } else {
+            firestore
+                .collection('users')
+                .doc(id)
+                .get()
+                .then(doc => {
+                    if (subscribe) {
+                        setUser({ uid: doc.id, ...doc.data() })
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+        return () => (subscribe = false)
+    }, [user.uid, id, active_user]);
+
     return !user.uid
         ?
         <Loading />
         : (
         <div className="flex h-full w-full lg:overflow-y-hidden">
             <Sidenav />
-            <div className="h-full w-full">
+            <div className="h-full w-full bg-gray-200">
                 <div className="md:w-1/2 w-full md:mx-auto bg-white h-full shadow">
                     <div className="w-full h-full">
-                        <div className="border-b-1 border-gray-400">
+                        <div className="border-b-2 border-gray-400">
                             <div className="flex flex-row items-center py-2 px-3">
                                 <button
                                     className="rounded-full 
@@ -77,15 +101,14 @@ function Profile() {
                                 </Heading>
                             </div>
                         </div>
-                        <div className="h-40 bg-gray-200 z-0"></div>
                         <div className="m-0">
                             <div className="w-full flex justify-center flex-col lg:flex-row lg:px-3 py-3 border-b-1 border-gray-400">
                                 <div className="w-full py-3 lg:py-0 text-center lg:w-auto">
-                                    <Avatar size="xl" name={`${user.firstname} ${user.lastname}`} src="..." />
+                                    <Avatar size="2xl" name={`${user.firstname} ${user.lastname}`} src="..." />
                                 </div>
                                 <div className="flex flex-col px-3">
                                     <div className="w-full flex flex-col text-center lg:flex-row justify-center lg:justify-between">
-                                        <div className="py-2 flex text-center lg:text-left flex-col justify-between">
+                                        <div className="py-2 flex text-center lg:text-left lg:w-1/2 flex-col justify-between">
                                             <Heading size="sm" fontSize="20px">
                                                 {`${user.firstname} ${user.lastname}`}
                                             </Heading>
@@ -93,11 +116,15 @@ function Profile() {
                                                 {`@${user.username}`}
                                             </p>
                                         </div>
-                                        <div className="text-center w-full">
+                                        <div className="text-center lg:text-right w-full lg:w-1/2">
                                             {
-                                                user.uid !== id
+                                                user.uid === id
                                                     ?
-                                                    <button className="hover:bg-blue-600 hover:text-white py-3 px-4 font-bold focus:outline-none border-2 border-blue-500 rounded-full">
+                                                    <button
+                                                            onClick={() => {
+                                                                history.push(`/edit-profile/${user.uid}`)
+                                                            }}
+                                                            className="hover:bg-blue-600 hover:text-white py-3 px-4 font-bold focus:outline-none border-2 border-blue-500 rounded-full">
                                                         Edit Profile
                                                     </button>
                                                     :
@@ -178,8 +205,6 @@ function Profile() {
                                                     <li className="p-2"><b>Gender:</b> Male</li>
                                                     <li className="p-2"><b>Phone:</b> +2347023232323</li>
                                                     <li className="p-2"><b>Email:</b> fawumiayodeji@gmail.com</li>
-                                                    <li className="p-2"><b>Level:</b> 400</li>
-                                                    <li className="p-2"><b>Dept:</b> CSE</li>
                                                 </ul>
                                             </div>
                                         </TabPanel>

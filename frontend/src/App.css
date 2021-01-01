@@ -94,10 +94,13 @@ li a{
 .chat-list-container{
   overflow-y: auto;
   flex: 1;
-  max-height: 540px;
+  max-height: calc(100% - 130px);
 }
 .message-body::-webkit-scrollbar,.chat-list-container::-webkit-scrollbar {
   width: 7px;
+}
+.chat-content{
+  width: calc(100% - 60px);
 }
 .chakra-modal__header,.chakra-modal__body{
   padding: 0px !important;
@@ -117,7 +120,7 @@ section.chakra-modal__content{
   overflow-y: auto;
   align-items: center;
   justify-content: center;
-  max-height: 550px;
+  max-height: calc(100% - 119px);
   position: relative;
 }
 .chakra-menu__menu-button{
@@ -247,5 +250,22 @@ section.chakra-modal__content{
   .message-body::-webkit-scrollbar{
     display: none;
     visibility: hidden;
+  }
+}
+@media (min-width: 1024px){
+  .chats-list,.side-details{
+    width: 28% !important;
+  }
+  .message-body {
+    padding: 0px 10px;
+    flex: 1 1;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+    max-height: calc(100% - 200px);
+    position: relative;
+}
+  .messg-container{
+    width: 44% !important;
   }
 }

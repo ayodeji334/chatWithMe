@@ -8,7 +8,7 @@ import logo from '../logo.svg';
 
 function Sidenav() {
     return (
-        <div className="rounded sidenav-container hidden md:block md:w-28 bg-purple-800">
+        <div className="rounded hidden md:block md:w-28 bg-purple-800">
             <div className="p-2 mb-4">
                 <img src={logo} height="60" width="60" alt="logo" />
             </div>
